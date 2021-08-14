@@ -46,4 +46,9 @@ public class Animal {
     public void setGender(int gender) {
         this.gender = gender;
     }
+
+    @Override
+    public String toString() {
+        return "Animal {\n\tID: " + id + "\n\tNome: " + name + "\n\tIdade: " + age + "\n\tGênero: " + gender + "\n}";
+    }
 }

@@ -67,6 +67,11 @@ public class Client {
         animals.add(animal);
     }
 
+    @Override
+    public String toString() {
+        return "Cliente {\n\tNome: " + name + "\n\tEndereço: " + address + "\n\tTelefone: " + phone + "\n\tCEP: " + cep + "\n\tEmail: " + email + "\n}";
+    }
+
     public List<Animal> getAnimals() {
         return animals;
     }
