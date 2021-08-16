@@ -42,6 +42,10 @@ public class Client {
         return email;
     }
 
+    public List<Animal> getAnimals() {
+        return new ArrayList<Animal>(animals);
+    }
+
     //Setters
     public void setName(String name) {
         this.name = name;
@@ -64,15 +68,13 @@ public class Client {
     }
 
     public void addAnimal(Animal animal) {
-        animals.add(animal);
+        if(!animal.getName().isBlank())
+            animals.add(animal);
     }
 
     @Override
     public String toString() {
-        return "Cliente {\n\tNome: " + name + "\n\tEndereço: " + address + "\n\tTelefone: " + phone + "\n\tCEP: " + cep + "\n\tEmail: " + email + "\n}";
+        return "Cliente {\n\tNome: " + name + "\n\tEndereço: " + address + "\n\tTelefone: " + phone + "\n\tCEP: " + cep + "\n\tEmail: " + email + "\n\tAnimais: " + animals + "\t}";
     }
 
-    public List<Animal> getAnimals() {
-        return animals;
-    }
 }
