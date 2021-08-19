@@ -9,7 +9,6 @@ public class Main {
 //        }
         Client cliente = new Client("Meu Nome", "Rua Minha", "##-#####-####", "########", "JV");
         Animal animal = new Animal(1, "Anonymous", 3, 1);
-        DAO.connect();
         cliente.addAnimal(animal);
         System.out.println(cliente.toString());
         System.out.println(animal.toString());
