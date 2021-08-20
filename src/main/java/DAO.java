@@ -41,13 +41,25 @@ public abstract class DAO {
     protected final boolean createTable() {
         PreparedStatement query;
         try {
-            //TODO: Create the statements for the following tables/classes: Consult, Species, Exam, Treatment, Veterinarian.
+            //TODO: Create the statements for the following tables/classes: Consult and Exam.
             //Animal
             query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Animal(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Age INTEGER, Gender INTEGER)");
             query.executeUpdate();
 
             //Client
             query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Client(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Address VARCHAR(255), Phone VARCHAR(255))");
+            query.executeUpdate();
+
+            //Species
+            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Species(ID INTEGER PRIMARY KEY, Species VARCHAR(255))");
+            query.executeUpdate();
+
+            //Treatment
+            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Treatment(ID INTEGER PRIMARY KEY, IDAnimal INTEGER, Name VARCHAR(255), InitialDate VARCHAR(255), EndDate VARCHAR(255), Done VARCHAR(255))");
+            query.executeUpdate();
+
+            //Veterinarian
+            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Veterinarian(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Address VARCHAR(255), Phone VARCHAR(255))");
             query.executeUpdate();
 
             return true;
