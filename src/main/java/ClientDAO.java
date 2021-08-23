@@ -42,6 +42,8 @@ public class ClientDAO extends DAO {
         } catch(Exception e) {
             System.out.println(e);
         }
+
+        return client;
     }
 
     protected ArrayList retrieve(String query) {
