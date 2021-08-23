@@ -38,7 +38,7 @@ public abstract class DAO {
 //    }
 
     //Create tables if they do not exist
-    protected final boolean createTable() {
+    protected final static boolean createTable() {
         PreparedStatement query;
         try {
             //TODO: Create the statements for the following tables/classes: Consult and Exam.

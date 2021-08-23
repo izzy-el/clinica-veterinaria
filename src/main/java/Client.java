@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO: add an ID attribute to the Client class;
+
 public class Client {
     //Attributes
     private String name;
