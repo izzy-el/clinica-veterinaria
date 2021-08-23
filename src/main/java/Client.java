@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO: add an ID attribute to the Client class;
-
 public class Client {
     //Attributes
+    private int ID;
     private String name;
     private String address;
     private String phone;
@@ -24,6 +23,8 @@ public class Client {
     }
 
     //Getters
+    public int getID() { return ID; }
+
     public String getName() {
         return name;
     }
@@ -49,6 +50,8 @@ public class Client {
     }
 
     //Setters
+    public void setID(int ID) { this.ID = ID; }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -76,7 +79,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Cliente {\n\tNome: " + name + "\n\tEndereço: " + address + "\n\tTelefone: " + phone + "\n\tCEP: " + cep + "\n\tEmail: " + email + "\n\tAnimais: " + animals + "\t}";
+        return "Cliente {\n\tID: " + ID + "\n\tNome: " + name + "\n\tEndereço: " + address + "\n\tTelefone: " + phone + "\n\tCEP: " + cep + "\n\tEmail: " + email + "\n\tAnimais: " + animals + "\t}";
     }
 
 }
