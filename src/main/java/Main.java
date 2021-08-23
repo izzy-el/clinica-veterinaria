@@ -15,7 +15,7 @@ public class Main {
 
         ClientDAO clientDAO;
         clientDAO = ClientDAO.getInstance();
-        clientDAO.create("Izael", "Rua de Prudente", "18", "19000000", "j175037");
-
+//        clientDAO.create("Izael", "Rua de Prudente", "18", "19000000", "j175037");
+//        clientDAO.delete(1);
     }
 }

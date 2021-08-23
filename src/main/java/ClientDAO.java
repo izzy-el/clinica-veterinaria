@@ -1,6 +1,5 @@
 import java.sql.PreparedStatement;
 
-//TODO: on delete method, change it to delete based on the ID, not the name;
 //TODO: create the retrieve and update methods;
 //TODO: check if everything is good with the Constructor of this class;
 
@@ -36,8 +35,19 @@ public class ClientDAO extends DAO {
     protected void delete(Client client) {
         try {
             PreparedStatement statement;
-            statement = DAO.connect().prepareStatement("DELETE FROM Client WHERE Name = ?");
-            statement.setString(1, client.getName());
+            statement = DAO.connect().prepareStatement("DELETE FROM Client WHERE ID = ?");
+            statement.setString(1, String.valueOf(client.getID()));
+            statement.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    protected void delete(int ID) {
+        try {
+            PreparedStatement statement;
+            statement = DAO.connect().prepareStatement("DELETE FROM Client WHERE ID = ?");
+            statement.setString(1, String.valueOf(ID));
             statement.executeUpdate();
         } catch(Exception e) {
             System.out.println(e);
