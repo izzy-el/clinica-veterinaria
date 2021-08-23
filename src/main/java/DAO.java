@@ -47,7 +47,7 @@ public abstract class DAO {
             query.executeUpdate();
 
             //Client
-            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Client(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Address VARCHAR(255), Phone VARCHAR(255))");
+            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Client(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Address VARCHAR(255), Phone VARCHAR(255), CEP VARCHAR(8), Email VARCHAR(255))");
             query.executeUpdate();
 
             //Species

@@ -10,11 +10,18 @@ public class ClientDAO extends DAO {
         ClientDAO.createTable();
     }
 
+    private static ClientDAO instance;
+
+    //Singleton
+    public static ClientDAO getInstance() {
+        return (instance == null ? (instance = new ClientDAO()) : instance);
+    }
+
     //CRUD starts here
-    private void create(String name, String address, String phone, String cep, String email) {
+    protected void create(String name, String address, String phone, String cep, String email) {
         try {
             PreparedStatement statement;
-            statement = DAO.connect().prepareStatement("INSERT INTO Client (name, address, phone, cep, email) VALUES (?,?,?,?,?)");
+            statement = DAO.connect().prepareStatement("INSERT INTO Client (Name, Address, Phone, CEP, Email) VALUES (?,?,?,?,?)");
             statement.setString(1, name);
             statement.setString(2, address);
             statement.setString(3, phone);
@@ -26,7 +33,7 @@ public class ClientDAO extends DAO {
         }
     }
 
-    private void delete(Client client) {
+    protected void delete(Client client) {
         try {
             PreparedStatement statement;
             statement = DAO.connect().prepareStatement("DELETE FROM Client WHERE Name = ?");

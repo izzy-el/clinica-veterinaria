@@ -12,5 +12,10 @@ public class Main {
         cliente.addAnimal(animal);
         System.out.println(cliente.toString());
         System.out.println(animal.toString());
+
+        ClientDAO clientDAO;
+        clientDAO = ClientDAO.getInstance();
+        clientDAO.create("Izael", "Rua de Prudente", "18", "19000000", "j175037");
+
     }
 }
