@@ -12,6 +12,7 @@ public class Client {
 
     private List<Animal> animals;
 
+    //TODO: add ID to the constructor;
     //Constructor
     public Client(String name, String address, String phone, String cep, String email) {
         this.name = name;

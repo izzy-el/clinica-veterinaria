@@ -29,6 +29,19 @@ public abstract class DAO {
         }
     }
 
+    protected ResultSet getResultSet(String query) {
+        Statement statement;
+        ResultSet rs = null;
+        try  {
+            statement = (Statement) conn.createStatement();
+            rs = statement.executeQuery(query);
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+
+        return rs;
+    }
+
 //    Execute update statement
 //    Not sure what it does. Not going to use for now
 //    protected int executeUpdate(PreparedStatement query) throws SQLException {
