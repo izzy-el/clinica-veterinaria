@@ -3,6 +3,7 @@ import java.util.List;
 
 public class Client {
     //Attributes
+    private int ID;
     private String name;
     private String address;
     private String phone;
@@ -11,6 +12,7 @@ public class Client {
 
     private List<Animal> animals;
 
+    //TODO: add ID to the constructor;
     //Constructor
     public Client(String name, String address, String phone, String cep, String email) {
         this.name = name;
@@ -22,6 +24,8 @@ public class Client {
     }
 
     //Getters
+    public int getID() { return ID; }
+
     public String getName() {
         return name;
     }
@@ -47,6 +51,8 @@ public class Client {
     }
 
     //Setters
+    public void setID(int ID) { this.ID = ID; }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -74,7 +80,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Cliente {\n\tNome: " + name + "\n\tEndereço: " + address + "\n\tTelefone: " + phone + "\n\tCEP: " + cep + "\n\tEmail: " + email + "\n\tAnimais: " + animals + "\t}";
+        return "Cliente {\n\tID: " + ID + "\n\tNome: " + name + "\n\tEndereço: " + address + "\n\tTelefone: " + phone + "\n\tCEP: " + cep + "\n\tEmail: " + email + "\n\tAnimais: " + animals + "\t}";
     }
 
 }
