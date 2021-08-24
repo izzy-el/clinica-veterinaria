@@ -3,13 +3,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-//TODO: create the retrieve and update methods;
 //TODO: check if everything is good with the Constructor of this class;
 
 public class ClientDAO extends DAO {
     private ClientDAO() {
-        ClientDAO.connect();
-        ClientDAO.createTable();
+        connect();
+        createTable();
     }
 
     private static ClientDAO instance;
@@ -38,7 +37,7 @@ public class ClientDAO extends DAO {
     private Client buildObject(ResultSet rs) throws SQLException {
         Client client = null;
         try {
-            client = new Client(rs.getString("Name"), rs.getString("Address"), rs.getString("Phone"), rs.getString("CEP"), rs.getString("Email"));
+            client = new Client(rs.getInt("ID"), rs.getString("Name"), rs.getString("Address"), rs.getString("Phone"), rs.getString("CEP"), rs.getString("Email"));
         } catch(Exception e) {
             System.out.println(e);
         }
@@ -62,6 +61,10 @@ public class ClientDAO extends DAO {
 
     protected ArrayList retrieveAll() {
         return this.retrieve("SELECT * FROM Client");
+    }
+
+    protected ArrayList retrieveById(int id) {
+        return this.retrieve("SELECT * FROM Client WHERE ID = " + id);
     }
 
     protected void update(Client client) {

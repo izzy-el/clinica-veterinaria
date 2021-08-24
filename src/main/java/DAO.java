@@ -3,7 +3,7 @@ import java.sql.*;
 
 public abstract class DAO {
     private static Connection conn = null;
-    protected static final File dbFile = new File("src/clinica.sqlite");
+    protected static final File dbFile = new File("clinica.sqlite");
     protected static final String database = "jdbc:sqlite:" + dbFile.getAbsolutePath();
 
     //Establish a connection to SQLite
@@ -56,7 +56,7 @@ public abstract class DAO {
         try {
             //TODO: Create the statements for the following tables/classes: Consult and Exam.
             //Animal
-            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Animal(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Age INTEGER, Gender INTEGER)");
+            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Animal(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Age INTEGER, Gender VARCHAR(255), ClientId INTEGER)");
             query.executeUpdate();
 
             //Client
