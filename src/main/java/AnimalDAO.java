@@ -26,8 +26,8 @@ public class AnimalDAO extends DAO {
             statement.setString(3, gender);
             statement.setInt(4, client.getID());
             statement.executeUpdate();
-        } catch(Exception e) {
-            System.out.println(e);
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -35,8 +35,8 @@ public class AnimalDAO extends DAO {
         Animal animal = null;
         try {
             animal = new Animal(rs.getInt("ID"), rs.getString("Name"), rs.getInt("Age"), rs.getString("Gender"), rs.getInt("ClientId")); //rs.getObject("ClientId"));
-        } catch(Exception e) {
-            System.out.println(e);
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
         }
 
         return animal;
@@ -49,8 +49,8 @@ public class AnimalDAO extends DAO {
             while(rs.next()){
                 animals.add(buildObject(rs));
             }
-        } catch(Exception e) {
-            System.out.println(e);
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
         }
 
         return animals;
@@ -71,7 +71,7 @@ public class AnimalDAO extends DAO {
             statement.setString(4, String.valueOf(client.getID()));
             statement.executeUpdate();
         } catch(Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -82,7 +82,7 @@ public class AnimalDAO extends DAO {
             statement.setString(1, String.valueOf(animal.getId()));
             statement.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -93,7 +93,7 @@ public class AnimalDAO extends DAO {
             statement.setString(1, String.valueOf(ID));
             statement.executeUpdate();
         } catch(Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 }

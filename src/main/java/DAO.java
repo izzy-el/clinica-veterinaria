@@ -11,7 +11,7 @@ public abstract class DAO {
         try {
             conn = DriverManager.getConnection(database);
             System.out.println("It does work!");
-        } catch(Exception e) {
+        } catch(SQLException e) {
             System.out.println("Exception: " + e);
         }
         return conn;
@@ -24,7 +24,7 @@ public abstract class DAO {
                 conn.close();
                 System.out.println("Connection was successfully closed.");
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Exception: " + e);
         }
     }
@@ -35,7 +35,7 @@ public abstract class DAO {
         try  {
             statement = (Statement) conn.createStatement();
             rs = statement.executeQuery(query);
-        } catch(Exception e) {
+        } catch(SQLException e) {
             System.out.println(e);
         }
 
@@ -76,8 +76,8 @@ public abstract class DAO {
             query.executeUpdate();
 
             return true;
-        } catch(Exception e) {
-            System.out.println("Exception: " + e);
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
         }
 
         return false;
