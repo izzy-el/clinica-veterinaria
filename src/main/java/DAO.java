@@ -36,7 +36,7 @@ public abstract class DAO {
             statement = (Statement) conn.createStatement();
             rs = statement.executeQuery(query);
         } catch(SQLException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
 
         return rs;
@@ -51,7 +51,7 @@ public abstract class DAO {
 //    }
 
     //Create tables if they do not exist
-    protected final static boolean createTable() {
+    protected static void createTable() {
         PreparedStatement query;
         try {
             //TODO: Create the statements for the following tables/classes: Consult and Exam.
@@ -75,11 +75,8 @@ public abstract class DAO {
             query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Veterinarian(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Address VARCHAR(255), Phone VARCHAR(255))");
             query.executeUpdate();
 
-            return true;
         } catch(SQLException e) {
             System.out.println(e.getMessage());
         }
-
-        return false;
     }
 }

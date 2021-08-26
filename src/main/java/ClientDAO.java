@@ -2,9 +2,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
-
-//TODO: check if everything is good with the Constructor of this class;
 
 public class ClientDAO extends DAO {
     private ClientDAO() {
@@ -46,7 +43,7 @@ public class ClientDAO extends DAO {
         return client;
     }
 
-    protected ArrayList retrieve(String query) {
+    protected ArrayList<Client> retrieve(String query) {
         ArrayList<Client> clients = new ArrayList<Client>();
         ResultSet rs = getResultSet(query);
         try {
@@ -60,11 +57,11 @@ public class ClientDAO extends DAO {
         return clients;
     }
 
-    protected ArrayList retrieveAll() {
+    protected ArrayList<Client> retrieveAll() {
         return this.retrieve("SELECT * FROM Client");
     }
 
-    protected ArrayList retrieveById(int id) {
+    protected ArrayList<Client> retrieveById(int id) {
         return this.retrieve("SELECT * FROM Client WHERE ID = " + id);
     }
 
@@ -78,7 +75,7 @@ public class ClientDAO extends DAO {
             statement.setString(4, client.getCep());
             statement.setString(5, client.getEmail());
             statement.executeUpdate();
-        } catch(Exception e) {
+        } catch(SQLException e) {
             System.out.println(e.getMessage());
         }
     }

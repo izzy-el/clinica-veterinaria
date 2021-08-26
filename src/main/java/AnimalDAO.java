@@ -42,7 +42,7 @@ public class AnimalDAO extends DAO {
         return animal;
     }
 
-    protected ArrayList retrieve(String query) {
+    protected ArrayList<Animal> retrieve(String query) {
         ArrayList<Animal> animals = new ArrayList<Animal>();
         ResultSet rs = getResultSet(query);
         try {
@@ -56,8 +56,12 @@ public class AnimalDAO extends DAO {
         return animals;
     }
 
-    protected ArrayList retrieveAll() {
+    protected ArrayList<Animal> retrieveAll() {
         return this.retrieve("SELECT * FROM Animal");
+    }
+
+    protected ArrayList<Animal> retrieveById(int id) {
+        return this.retrieve("SELECT * FROM Animal WHERE ID = " + id);
     }
 
     protected void update(Animal animal, Client client) {
