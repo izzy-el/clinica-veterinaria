@@ -59,6 +59,6 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal {\n\tID: " + id + "\n\tNome: " + name + "\n\tIdade: " + age + "\n\tGênero: " + gender + "\n}";
+        return "\n\t\tID: " + id + "\n\t\tNome: " + name + "\n\t\tIdade: " + age + "\n\t\tGênero: " + gender + "\n\t";
     }
 }

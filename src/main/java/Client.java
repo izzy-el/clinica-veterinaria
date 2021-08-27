@@ -74,14 +74,13 @@ public class Client {
         this.email = email;
     }
 
-    public void addAnimal(Animal animal) {
-        if(!animal.getName().isBlank())
-            animals.add(animal);
+    public void addAnimal(ArrayList<Animal> animal) {
+        this.animals = animal;
     }
 
     @Override
     public String toString() {
-        return "Cliente {\n\tID: " + ID + "\n\tNome: " + name + "\n\tEndereço: " + address + "\n\tTelefone: " + phone + "\n\tCEP: " + cep + "\n\tEmail: " + email + "\n\t" + getAnimals().toString() + "\n}";
+        return "Cliente [\n\tID: " + ID + "\n\tNome: " + name + "\n\tEndereço: " + address + "\n\tTelefone: " + phone + "\n\tCEP: " + cep + "\n\tEmail: " + email + "\n\tAnimals: " + getAnimals().toString() + "\n]";
     }
 
 }
