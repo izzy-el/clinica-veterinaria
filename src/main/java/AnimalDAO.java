@@ -17,7 +17,7 @@ public class AnimalDAO extends DAO {
     }
 
     //CRUD starts here
-    protected void create(String name, int age, String gender, Client client) {
+    public void create(String name, int age, String gender, Client client) {
         try {
             PreparedStatement statement;
             statement = DAO.connect().prepareStatement("INSERT INTO Animal (Name, Age, Gender, ClientId) VALUES (?,?,?,?)");
@@ -42,7 +42,7 @@ public class AnimalDAO extends DAO {
         return animal;
     }
 
-    protected ArrayList<Animal> retrieve(String query) {
+    public ArrayList<Animal> retrieve(String query) {
         ArrayList<Animal> animals = new ArrayList<Animal>();
         ResultSet rs = getResultSet(query);
         try {
@@ -56,15 +56,23 @@ public class AnimalDAO extends DAO {
         return animals;
     }
 
-    protected ArrayList<Animal> retrieveAll() {
+    public ArrayList<Animal> retrieveAll() {
         return this.retrieve("SELECT * FROM Animal");
     }
 
-    protected ArrayList<Animal> retrieveById(int id) {
+    public ArrayList<Animal> retrieveById(int id) {
         return this.retrieve("SELECT * FROM Animal WHERE ID = " + id);
     }
 
-    protected void update(Animal animal, Client client) {
+    public ArrayList<Animal> retrieveByClientId(int id) {
+        return this.retrieve("SELECT * FROM Animal WHERE ClientId = " + id);
+    }
+
+    public ArrayList<Animal> retrieveByClientId(Client client) {
+        return this.retrieve("SELECT * FROM Animal WHERE ClientId = " + client.getID());
+    }
+
+    public void update(Animal animal, Client client) {
         try {
             PreparedStatement statement;
             //Animal (Name, Age, Gender, ClientId) VALUES (?,?,?,?)
@@ -79,7 +87,7 @@ public class AnimalDAO extends DAO {
         }
     }
 
-    protected void delete(Animal animal) {
+    public void delete(Animal animal) {
         try {
             PreparedStatement statement;
             statement = DAO.connect().prepareStatement("DELETE FROM Animal WHERE ID = ?");
@@ -90,7 +98,7 @@ public class AnimalDAO extends DAO {
         }
     }
 
-    protected void delete(int ID) {
+    public void delete(int ID) {
         try {
             PreparedStatement statement;
             statement = DAO.connect().prepareStatement("DELETE FROM Animal WHERE ID = ?");

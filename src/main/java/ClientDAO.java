@@ -17,7 +17,7 @@ public class ClientDAO extends DAO {
     }
 
     //CRUD starts here
-    protected void create(String name, String address, String phone, String cep, String email) {
+    public void create(String name, String address, String phone, String cep, String email) {
         try {
             PreparedStatement statement;
             statement = DAO.connect().prepareStatement("INSERT INTO Client (Name, Address, Phone, CEP, Email) VALUES (?,?,?,?,?)");
@@ -36,14 +36,14 @@ public class ClientDAO extends DAO {
         Client client = null;
         try {
             client = new Client(rs.getInt("ID"), rs.getString("Name"), rs.getString("Address"), rs.getString("Phone"), rs.getString("CEP"), rs.getString("Email"));
-        } catch(Exception e) {
+        } catch(SQLException e) {
             System.out.println(e.getMessage());
         }
 
         return client;
     }
 
-    protected ArrayList<Client> retrieve(String query) {
+    public ArrayList<Client> retrieve(String query) {
         ArrayList<Client> clients = new ArrayList<Client>();
         ResultSet rs = getResultSet(query);
         try {
@@ -57,15 +57,15 @@ public class ClientDAO extends DAO {
         return clients;
     }
 
-    protected ArrayList<Client> retrieveAll() {
+    public ArrayList<Client> retrieveAll() {
         return this.retrieve("SELECT * FROM Client");
     }
 
-    protected ArrayList<Client> retrieveById(int id) {
+    public ArrayList<Client> retrieveById(int id) {
         return this.retrieve("SELECT * FROM Client WHERE ID = " + id);
     }
 
-    protected void update(Client client) {
+    public void update(Client client) {
         try {
             PreparedStatement statement;
             statement = DAO.connect().prepareStatement("UPDATE Client SET Name = ?, Address = ?, Phone = ?, CEP = ?, Email = ?");
@@ -80,7 +80,7 @@ public class ClientDAO extends DAO {
         }
     }
 
-    protected void delete(Client client) {
+    public void delete(Client client) {
         try {
             PreparedStatement statement;
             statement = DAO.connect().prepareStatement("DELETE FROM Client WHERE ID = ?");
@@ -91,7 +91,7 @@ public class ClientDAO extends DAO {
         }
     }
 
-    protected void delete(int ID) {
+    public void delete(int ID) {
         try {
             PreparedStatement statement;
             statement = DAO.connect().prepareStatement("DELETE FROM Client WHERE ID = ?");

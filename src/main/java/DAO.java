@@ -10,7 +10,6 @@ public abstract class DAO {
     protected static Connection connect() {
         try {
             conn = DriverManager.getConnection(database);
-            System.out.println("It does work!");
         } catch(SQLException e) {
             System.out.println("Exception: " + e);
         }
