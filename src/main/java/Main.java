@@ -1,21 +1,14 @@
-import java.sql.*;
-
 public class Main {
     public static void main(String[] args) {
-//        try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//        } catch (Exception e) {
-//            System.out.println("Exception in loading the driver: " + e);
-//        }
-        Client cliente = new Client("Meu Nome", "Rua Minha", "##-#####-####", "########", "JV");
-        Animal animal = new Animal(1, "Anonymous", 3, 1);
-        cliente.addAnimal(animal);
-        System.out.println(cliente.toString());
-        System.out.println(animal.toString());
-
         ClientDAO clientDAO;
+        AnimalDAO animalDAO;
+
         clientDAO = ClientDAO.getInstance();
-//        clientDAO.create("Izael", "Rua de Prudente", "18", "19000000", "j175037");
-//        clientDAO.delete(1);
+        animalDAO = AnimalDAO.getInstance();
+
+        Client client = clientDAO.retrieveById(1);
+        client.addAnimal(animalDAO.retrieveByClientId(client));
+
+        System.out.println(client.toString());
     }
 }

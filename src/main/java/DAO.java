@@ -3,15 +3,14 @@ import java.sql.*;
 
 public abstract class DAO {
     private static Connection conn = null;
-    protected static final File dbFile = new File("src/clinica.sqlite");
+    protected static final File dbFile = new File("clinica.sqlite");
     protected static final String database = "jdbc:sqlite:" + dbFile.getAbsolutePath();
 
     //Establish a connection to SQLite
     protected static Connection connect() {
         try {
             conn = DriverManager.getConnection(database);
-            System.out.println("It does work!");
-        } catch(Exception e) {
+        } catch(SQLException e) {
             System.out.println("Exception: " + e);
         }
         return conn;
@@ -24,7 +23,7 @@ public abstract class DAO {
                 conn.close();
                 System.out.println("Connection was successfully closed.");
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Exception: " + e);
         }
     }
@@ -35,8 +34,8 @@ public abstract class DAO {
         try  {
             statement = (Statement) conn.createStatement();
             rs = statement.executeQuery(query);
-        } catch(Exception e) {
-            System.out.println(e);
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
         }
 
         return rs;
@@ -51,12 +50,12 @@ public abstract class DAO {
 //    }
 
     //Create tables if they do not exist
-    protected final static boolean createTable() {
+    protected static void createTable() {
         PreparedStatement query;
         try {
             //TODO: Create the statements for the following tables/classes: Consult and Exam.
             //Animal
-            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Animal(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Age INTEGER, Gender INTEGER)");
+            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Animal(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Age INTEGER, Gender VARCHAR(255), ClientId INTEGER)");
             query.executeUpdate();
 
             //Client
@@ -75,11 +74,8 @@ public abstract class DAO {
             query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Veterinarian(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Address VARCHAR(255), Phone VARCHAR(255))");
             query.executeUpdate();
 
-            return true;
-        } catch(Exception e) {
-            System.out.println("Exception: " + e);
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
         }
-
-        return false;
     }
 }

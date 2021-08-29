@@ -14,7 +14,8 @@ public class Client {
 
     //TODO: add ID to the constructor;
     //Constructor
-    public Client(String name, String address, String phone, String cep, String email) {
+    public Client(int ID, String name, String address, String phone, String cep, String email) {
+        this.ID = ID;
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -73,14 +74,13 @@ public class Client {
         this.email = email;
     }
 
-    public void addAnimal(Animal animal) {
-        if(!animal.getName().isBlank())
-            animals.add(animal);
+    public void addAnimal(ArrayList<Animal> animal) {
+        this.animals = animal;
     }
 
     @Override
     public String toString() {
-        return "Cliente {\n\tID: " + ID + "\n\tNome: " + name + "\n\tEndereço: " + address + "\n\tTelefone: " + phone + "\n\tCEP: " + cep + "\n\tEmail: " + email + "\n\tAnimais: " + animals + "\t}";
+        return "Cliente [\n\tID: " + ID + "\n\tNome: " + name + "\n\tEndereço: " + address + "\n\tTelefone: " + phone + "\n\tCEP: " + cep + "\n\tEmail: " + email + "\n\tAnimals: " + getAnimals().toString() + "\n]";
     }
 
 }
