@@ -3,14 +3,16 @@ public class Animal {
     private int id;
     private String name;
     private int age;
-    private int gender; // 0: Male; 1: Female
+    private String gender;
+    private int clientId;
 
     //Constructor
-    public Animal(int id, String name, int age, int gender) {
+    public Animal(int id, String name, int age, String gender, int clientId) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.gender = gender;
+        this.clientId = clientId;
     }
 
     //Getters
@@ -26,8 +28,12 @@ public class Animal {
         return age;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
+    }
+
+    public int getClientId() {
+        return clientId;
     }
 
     //Setters
@@ -43,7 +49,16 @@ public class Animal {
         this.age = age;
     }
 
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
+
+    @Override
+    public String toString() {
+        return "\n\t\tID: " + id + "\n\t\tNome: " + name + "\n\t\tIdade: " + age + "\n\t\tGênero: " + gender + "\n\t";
     }
 }

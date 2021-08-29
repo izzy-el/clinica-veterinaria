@@ -3,6 +3,7 @@ import java.util.List;
 
 public class Client {
     //Attributes
+    private int ID;
     private String name;
     private String address;
     private String phone;
@@ -11,8 +12,10 @@ public class Client {
 
     private List<Animal> animals;
 
+    //TODO: add ID to the constructor;
     //Constructor
-    public Client(String name, String address, String phone, String cep, String email) {
+    public Client(int ID, String name, String address, String phone, String cep, String email) {
+        this.ID = ID;
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -22,6 +25,8 @@ public class Client {
     }
 
     //Getters
+    public int getID() { return ID; }
+
     public String getName() {
         return name;
     }
@@ -42,7 +47,13 @@ public class Client {
         return email;
     }
 
+    public List<Animal> getAnimals() {
+        return new ArrayList<Animal>(animals);
+    }
+
     //Setters
+    public void setID(int ID) { this.ID = ID; }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -63,11 +74,13 @@ public class Client {
         this.email = email;
     }
 
-    public void addAnimal(Animal animal) {
-        animals.add(animal);
+    public void addAnimal(ArrayList<Animal> animal) {
+        this.animals = animal;
     }
 
-    public List<Animal> getAnimals() {
-        return animals;
+    @Override
+    public String toString() {
+        return "Cliente [\n\tID: " + ID + "\n\tNome: " + name + "\n\tEndereço: " + address + "\n\tTelefone: " + phone + "\n\tCEP: " + cep + "\n\tEmail: " + email + "\n\tAnimals: " + getAnimals().toString() + "\n]";
     }
+
 }
