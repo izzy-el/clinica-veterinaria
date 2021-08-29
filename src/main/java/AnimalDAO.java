@@ -31,6 +31,20 @@ public class AnimalDAO extends DAO {
         }
     }
 
+    public void create(String name, int age, String gender, int client) {
+        try {
+            PreparedStatement statement;
+            statement = DAO.connect().prepareStatement("INSERT INTO Animal (Name, Age, Gender, ClientId) VALUES (?,?,?,?)");
+            statement.setString(1, name);
+            statement.setInt(2, age);
+            statement.setString(3, gender);
+            statement.setInt(4, client);
+            statement.executeUpdate();
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     private Animal buildObject(ResultSet rs) throws SQLException {
         Animal animal = null;
         try {
