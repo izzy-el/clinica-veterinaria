@@ -71,7 +71,7 @@ public abstract class DAO {
             query.executeUpdate();
 
             //Veterinarian
-            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Veterinarian(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Address VARCHAR(255), Phone VARCHAR(255))");
+            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Veterinarian(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Address VARCHAR(255), Phone VARCHAR(255), Email VARCHAR(255))");
             query.executeUpdate();
 
         } catch(SQLException e) {

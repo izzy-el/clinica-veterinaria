@@ -3,12 +3,14 @@ public class Veterinarian {
     private String vetName;
     private String vetAddress;
     private String vetPhone;
+    private String vetEmail;
 
     //Constructor
-    public Veterinarian(String vetName, String vetAddress, String vetPhone) {
+    public Veterinarian(String vetName, String vetAddress, String vetPhone, String vetEmail) {
         this.vetName = vetName;
         this.vetAddress = vetAddress;
         this.vetPhone = vetPhone;
+        this.vetEmail = vetEmail;
     }
 
     //Getters
@@ -24,6 +26,10 @@ public class Veterinarian {
         return vetPhone;
     }
 
+    public String getVetEmail() {
+        return vetEmail;
+    }
+
     //Setters
     public void setVetName(String vetName) {
         this.vetName = vetName;
@@ -35,5 +41,9 @@ public class Veterinarian {
 
     public void setVetPhone(String vetPhone) {
         this.vetPhone = vetPhone;
+    }
+
+    public void setVetEmail(String vetEmail) {
+        this.vetEmail = vetEmail;
     }
 }

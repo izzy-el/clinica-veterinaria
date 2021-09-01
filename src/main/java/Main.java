@@ -4,11 +4,11 @@ public class Main {
         AnimalDAO animalDAO;
 
         clientDAO = ClientDAO.getInstance();
-        animalDAO = AnimalDAO.getInstance();
-
-        Client client = clientDAO.retrieveById(1);
-        client.addAnimal(animalDAO.retrieveByClientId(client));
-
-        System.out.println(client.toString());
+//        animalDAO = AnimalDAO.getInstance();
+//
+//        Client client = clientDAO.retrieveById(1);
+//        client.addAnimal(animalDAO.retrieveByClientId(client));
+//
+//        System.out.println(client.toString());
     }
 }
