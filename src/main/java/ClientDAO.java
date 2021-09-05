@@ -80,17 +80,6 @@ public class ClientDAO extends DAO {
         }
     }
 
-    public void delete(Client client) {
-        try {
-            PreparedStatement statement;
-            statement = DAO.connect().prepareStatement("DELETE FROM Client WHERE ID = ?");
-            statement.setString(1, String.valueOf(client.getID()));
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     public void delete(int ID) {
         try {
             PreparedStatement statement;

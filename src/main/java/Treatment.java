@@ -1,3 +1,4 @@
+import java.sql.Date;
 import java.util.Calendar;
 
 public class Treatment {
@@ -9,11 +10,11 @@ public class Treatment {
     private boolean done;
 
     //Constructor
-    public Treatment(String name, Calendar endDate, Calendar initialDate, int idAnimal, boolean done) {
-        this.name = name;
-        this.endDate = endDate;
-        this.initialDate = initialDate;
+    public Treatment(int idAnimal, String name, Calendar initialDate, Calendar endDate, boolean done) {
         this.idAnimal = idAnimal;
+        this.name = name;
+        this.initialDate = initialDate;
+        this.endDate = endDate;
         this.done = done;
     }
 
@@ -21,6 +22,7 @@ public class Treatment {
     public String getName() {
         return name;
     }
+
     public Calendar getEndDate() {
         return endDate;
     }

@@ -1,9 +1,18 @@
+import java.util.Calendar;
+import java.util.Date;
+
 public class Main {
     public static void main(String[] args) {
-        ClientDAO clientDAO;
-        AnimalDAO animalDAO;
+        TreatmentDAO treatmentDAO;
+        treatmentDAO = TreatmentDAO.getInstance();
+//        Treatment treatment = treatmentDAO.retrieveById(1);
+//        System.out.println(treatment.toString());
 
-        clientDAO = ClientDAO.getInstance();
+//        treatmentDAO.create(1, "Vaccine", Calendar.getInstance(), Calendar.getInstance(), true);
+//        ClientDAO clientDAO;
+//        AnimalDAO animalDAO;
+
+//        clientDAO = ClientDAO.getInstance();
 //        animalDAO = AnimalDAO.getInstance();
 //
 //        Client client = clientDAO.retrieveById(1);

@@ -67,7 +67,7 @@ public abstract class DAO {
             query.executeUpdate();
 
             //Treatment
-            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Treatment(ID INTEGER PRIMARY KEY, IDAnimal INTEGER, Name VARCHAR(255), InitialDate VARCHAR(255), EndDate VARCHAR(255), Done VARCHAR(255))");
+            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Treatment(ID INTEGER PRIMARY KEY, IDAnimal INTEGER, Name VARCHAR(255), InitialDate DATE, EndDate DATE, Done VARCHAR(255))");
             query.executeUpdate();
 
             //Veterinarian
