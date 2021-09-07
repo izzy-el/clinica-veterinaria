@@ -48,7 +48,7 @@ public class TreatmentDAO extends DAO {
         Treatment treatment = null;
         try {
             Calendar calendar = Calendar.getInstance();
-            treatment = new Treatment(rs.getInt("IDAnimal"), rs.getString("Name"), dateToCalendar(rs.getDate("InitialDate")), dateToCalendar(rs.getDate("EndDate", calendar)), rs.getBoolean("Done"));
+            treatment = new Treatment(rs.getInt("IDAnimal"), rs.getString("Name"), dateToCalendar(rs.getDate("InitialDate")), dateToCalendar(rs.getDate("EndDate")), rs.getBoolean("Done"));
         } catch(SQLException e) {
             System.out.println(e.getMessage());
         }

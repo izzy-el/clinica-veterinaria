@@ -5,8 +5,11 @@ public class Main {
     public static void main(String[] args) {
         TreatmentDAO treatmentDAO;
         treatmentDAO = TreatmentDAO.getInstance();
-//        Treatment treatment = treatmentDAO.retrieveById(1);
-//        System.out.println(treatment.toString());
+        Treatment treatment = treatmentDAO.retrieveAll().get(0);
+        if(treatment == null) {
+            System.out.println("BRUH!");
+        }
+//        System.out.println(treatment);
 
 //        treatmentDAO.create(1, "Vaccine", Calendar.getInstance(), Calendar.getInstance(), true);
 //        ClientDAO clientDAO;

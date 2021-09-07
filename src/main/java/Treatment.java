@@ -57,5 +57,9 @@ public class Treatment {
     }
 
     //Methods
+    @Override
+    public String toString() {
+        return "Calendar [\n\tIDAnimal: " + idAnimal + "\n\tNome: " + name + "\n\tInitial Date: " + initialDate.getTime() + "\n\tEnd Date: " + endDate.getTime() + "\n\tDone: " + done + "\n]";
+    }
 
 }
