@@ -11,7 +11,7 @@ public class Client {
     private String email;
 
     private List<Animal> animals;
-    
+
     //Constructor
     public Client(int ID, String name, String address, String phone, String cep, String email) {
         this.ID = ID;

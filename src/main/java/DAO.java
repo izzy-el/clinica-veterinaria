@@ -66,7 +66,7 @@ public abstract class DAO {
             query.executeUpdate();
 
             //Exam
-            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Exam(ID INTEGER PRIMARY KEY, Name VARCHAR(255), ConsultID INTEGER)");
+            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Exam(ID INTEGER PRIMARY KEY, Name VARCHAR(255), AppointmentID INTEGER)");
             query.executeUpdate();
 
             //Appointment
