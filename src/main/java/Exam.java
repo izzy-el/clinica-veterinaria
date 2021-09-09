@@ -1,17 +1,17 @@
 public class Exam {
     //Attributes
-    private String examDesc;
+    private String name;
     private int appointmentID;
 
     //Constructor
-    public Exam(String examDesc, int appointmentID) {
-        this.examDesc = examDesc;
+    public Exam(String name, int appointmentID) {
+        this.name = name;
         this.appointmentID = appointmentID;
     }
 
     //Getters
-    public String getExamDesc() {
-        return examDesc;
+    public String getExamName() {
+        return name;
     }
 
     public int getAppointmentID() {
@@ -19,8 +19,8 @@ public class Exam {
     }
 
     //Setters
-    public void setExamDesc(String examDesc) {
-        this.examDesc = examDesc;
+    public void setExamname(String name) {
+        this.name = name;
     }
 
     public void setAppointmentID(int appointmentID) {
