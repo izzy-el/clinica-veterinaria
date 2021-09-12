@@ -1,7 +1,8 @@
 import java.util.Calendar;
+import java.util.Date;
 
 public class Appointment {
-    private Calendar date;
+    private Date date;
     private String time;
     private String comments;
     private int idAnimal;
@@ -10,7 +11,7 @@ public class Appointment {
     private boolean done;
 
     //Constructor
-    public Appointment(Calendar date, String time, String comments, int idAnimal, int idVet, int idTreatment, boolean done) {
+    public Appointment(Date date, String time, String comments, int idAnimal, int idVet, int idTreatment, boolean done) {
         this.date = date;
         this.time = time;
         this.comments = comments;
@@ -21,7 +22,7 @@ public class Appointment {
     }
 
     //Getters
-    public Calendar getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -50,7 +51,7 @@ public class Appointment {
     }
 
     //Setters
-    public void setDate(Calendar date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
