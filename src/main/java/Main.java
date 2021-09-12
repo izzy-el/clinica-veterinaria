@@ -1,17 +1,24 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         TreatmentDAO treatmentDAO;
         treatmentDAO = TreatmentDAO.getInstance();
-        Treatment treatment = treatmentDAO.retrieveAll().get(0);
-        if(treatment == null) {
-            System.out.println("BRUH!");
-        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        Treatment treatment = treatmentDAO.retrieveById(1);
+        System.out.println(treatment);
+
+//        treatmentDAO.create(1, "Vaccine", sdf.parse("26/01/2002"), sdf.parse("27/01/2002"), true);
+//        Treatment treatment = treatmentDAO.retrieveById(3);
 //        System.out.println(treatment);
 
-//        treatmentDAO.create(1, "Vaccine", Calendar.getInstance(), Calendar.getInstance(), true);
+//        Treatment treatment = treatmentDAO.retrieveAll().get(0);
+
 //        ClientDAO clientDAO;
 //        AnimalDAO animalDAO;
 
@@ -19,6 +26,7 @@ public class Main {
 //        animalDAO = AnimalDAO.getInstance();
 //
 //        Client client = clientDAO.retrieveById(1);
+//        System.out.println(client);
 //        client.addAnimal(animalDAO.retrieveByClientId(client));
 //
 //        System.out.println(client.toString());

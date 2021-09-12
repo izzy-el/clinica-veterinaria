@@ -70,7 +70,7 @@ public abstract class DAO {
             query.executeUpdate();
 
             //Appointment
-            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Appointment(ID INTEGER PRIMARY KEY, Data TEXT, Horario VARCHAR(255), Comentario VARCHAR(255), IDAnimal INTEGER, IDVet INTEGER, IDTreatment INTEGER, Done INTEGER)");
+            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Appointment(ID INTEGER PRIMARY KEY, Data DATE, Horario VARCHAR(255), Comentario VARCHAR(255), IDAnimal INTEGER, IDVet INTEGER, IDTreatment INTEGER, Done INTEGER)");
             query.executeUpdate();
 
         } catch(SQLException e) {

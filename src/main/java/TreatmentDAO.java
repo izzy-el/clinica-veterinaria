@@ -1,6 +1,8 @@
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,14 +21,14 @@ public class TreatmentDAO extends DAO {
     }
 
     //CRUD starts here
-    public void create(int idAnimal, String name, Calendar initialDate, Calendar endDate, boolean done) {
+    public void create(int idAnimal, String name, Date initialDate, Date endDate, boolean done) {
         try {
             PreparedStatement statement;
             statement = DAO.connect().prepareStatement("INSERT INTO Treatment (IDAnimal, Name, InitialDate, EndDate, Done) VALUES (?,?,?,?,?)");
             statement.setInt(1, idAnimal);
             statement.setString(2, name);
-            statement.setString(3, String.valueOf(initialDate));
-            statement.setString(4, String.valueOf(endDate));
+            statement.setDate(3, new java.sql.Date(initialDate.getTime()));
+            statement.setDate(4, new java.sql.Date(endDate.getTime()));
             statement.setBoolean(5, done);
             statement.executeUpdate();
         } catch(SQLException e) {
@@ -34,21 +36,10 @@ public class TreatmentDAO extends DAO {
         }
     }
 
-    private Calendar dateToCalendar(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        return calendar;
-    }
-
-    private Date calendarToDate(Calendar calendar) {
-        return calendar.getTime();
-    }
-
     private Treatment buildObject(ResultSet rs) throws SQLException {
         Treatment treatment = null;
         try {
-            Calendar calendar = Calendar.getInstance();
-            treatment = new Treatment(rs.getInt("IDAnimal"), rs.getString("Name"), dateToCalendar(rs.getDate("InitialDate")), dateToCalendar(rs.getDate("EndDate")), rs.getBoolean("Done"));
+            treatment = new Treatment(rs.getInt("IDAnimal"), rs.getString("Name"), rs.getDate("InitialDate"), rs.getDate("EndDate"), rs.getBoolean("Done"));
         } catch(SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -84,8 +75,8 @@ public class TreatmentDAO extends DAO {
             statement = DAO.connect().prepareStatement("UPDATE Treatment SET IDAnimal = ?, Name = ?, InitialDate = ?, EndDate = ?, Done = ?");
             statement.setInt(1, treatment.getIdAnimal());
             statement.setString(2, treatment.getName());
-            statement.setDate(3, (java.sql.Date) calendarToDate(treatment.getInitialDate()));
-            statement.setDate(4, (java.sql.Date) calendarToDate(treatment.getEndDate()));
+            statement.setDate(3, treatment.getInitialDate());
+            statement.setDate(4, treatment.getInitialDate());
             statement.setBoolean(5, treatment.isDone());
             statement.executeUpdate();
         } catch(SQLException e) {
