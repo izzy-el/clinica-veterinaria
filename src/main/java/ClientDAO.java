@@ -62,7 +62,8 @@ public class ClientDAO extends DAO {
     }
 
     public Client retrieveById(int id) {
-        return this.retrieve("SELECT * FROM Client WHERE ID = " + id).get(0);
+        ArrayList<Client> clients = this.retrieve("SELECT * FROM Client WHERE ID = " + id);
+        return (clients.isEmpty() ? null : clients.get(0));
     }
 
     public void update(Client client) {

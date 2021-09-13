@@ -63,7 +63,8 @@ public class TreatmentDAO extends DAO {
     }
 
     public Treatment retrieveById(int id) {
-        return this.retrieve("SELECT * FROM Treatment WHERE ID = " + id).get(0);
+        ArrayList<Treatment> treatments = this.retrieve("SELECT * FROM Treatment WHERE ID = " + id);
+        return (treatments.isEmpty() ? null : treatments.get(0));
     }
 
     public void update(Treatment treatment) {

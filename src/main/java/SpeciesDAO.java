@@ -1,3 +1,4 @@
+import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,7 +59,8 @@ public class SpeciesDAO extends DAO{
     }
 
     public Species retrieveById(int id) {
-        return this.retrieve("SELECT * FROM Species WHERE ID = " + id).get(0);
+        ArrayList<Species> species = this.retrieve("SELECT * FROM Species WHERE ID = " + id);
+        return (species.isEmpty() ? null : species.get(0));
     }
 
     public void update(Species specie) {
