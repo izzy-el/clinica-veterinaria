@@ -1,19 +1,22 @@
-import java.util.Calendar;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Treatment {
     //Attributes
     private String name;
-    private Calendar endDate;
-    private Calendar initialDate;
+    private Date endDate;
+    private Date initialDate;
     private int idAnimal;
     private boolean done;
 
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
     //Constructor
-    public Treatment(String name, Calendar endDate, Calendar initialDate, int idAnimal, boolean done) {
-        this.name = name;
-        this.endDate = endDate;
-        this.initialDate = initialDate;
+    public Treatment(int idAnimal, String name, Date initialDate, Date endDate, boolean done) {
         this.idAnimal = idAnimal;
+        this.name = name;
+        this.initialDate = initialDate;
+        this.endDate = endDate;
         this.done = done;
     }
 
@@ -21,12 +24,13 @@ public class Treatment {
     public String getName() {
         return name;
     }
-    public Calendar getEndDate() {
-        return endDate;
+
+    public Date getInitialDate() {
+        return initialDate;
     }
 
-    public Calendar getInitialDate() {
-        return initialDate;
+    public Date getEndDate() {
+        return endDate;
     }
 
     public int getIdAnimal() {
@@ -42,12 +46,12 @@ public class Treatment {
         this.name = name;
     }
 
-    public void setEndDate(Calendar endDate) {
-        this.endDate = endDate;
+    public void setInitialDate(Date initialDate) {
+        this.initialDate = initialDate;
     }
 
-    public void setInitialDate(Calendar initialDate) {
-        this.initialDate = initialDate;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public void setDone(boolean done) {
@@ -55,5 +59,9 @@ public class Treatment {
     }
 
     //Methods
+    @Override
+    public String toString() {
+        return "Calendar [\n\tIDAnimal: " + idAnimal + "\n\tNome: " + name + "\n\tInitial Date: " + sdf.format(initialDate) + "\n\tEnd Date: " + sdf.format(endDate) + "\n\tDone: " + done + "\n]";
+    }
 
 }

@@ -62,7 +62,8 @@ public class ClientDAO extends DAO {
     }
 
     public Client retrieveById(int id) {
-        return this.retrieve("SELECT * FROM Client WHERE ID = " + id).get(0);
+        ArrayList<Client> clients = this.retrieve("SELECT * FROM Client WHERE ID = " + id);
+        return (clients.isEmpty() ? null : clients.get(0));
     }
 
     public void update(Client client) {
@@ -76,17 +77,6 @@ public class ClientDAO extends DAO {
             statement.setString(5, client.getEmail());
             statement.executeUpdate();
         } catch(SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void delete(Client client) {
-        try {
-            PreparedStatement statement;
-            statement = DAO.connect().prepareStatement("DELETE FROM Client WHERE ID = ?");
-            statement.setString(1, String.valueOf(client.getID()));
-            statement.executeUpdate();
-        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }

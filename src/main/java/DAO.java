@@ -41,19 +41,10 @@ public abstract class DAO {
         return rs;
     }
 
-//    Execute update statement
-//    Not sure what it does. Not going to use for now
-//    protected int executeUpdate(PreparedStatement query) throws SQLException {
-//        int update;
-//        update = query.executeUpdate();
-//        return update;
-//    }
-
     //Create tables if they do not exist
     protected static void createTable() {
         PreparedStatement query;
         try {
-            //TODO: Create the statements for the following tables/classes: Consult and Exam.
             //Animal
             query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Animal(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Age INTEGER, Gender VARCHAR(255), ClientId INTEGER)");
             query.executeUpdate();
@@ -67,11 +58,19 @@ public abstract class DAO {
             query.executeUpdate();
 
             //Treatment
-            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Treatment(ID INTEGER PRIMARY KEY, IDAnimal INTEGER, Name VARCHAR(255), InitialDate VARCHAR(255), EndDate VARCHAR(255), Done VARCHAR(255))");
+            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Treatment(ID INTEGER PRIMARY KEY, IDAnimal INTEGER, Name VARCHAR(255), InitialDate DATE, EndDate DATE, Done VARCHAR(255))");
             query.executeUpdate();
 
             //Veterinarian
-            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Veterinarian(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Address VARCHAR(255), Phone VARCHAR(255))");
+            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Veterinarian(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Address VARCHAR(255), Phone VARCHAR(255), Email VARCHAR(255))");
+            query.executeUpdate();
+
+            //Exam
+            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Exam(ID INTEGER PRIMARY KEY, Name VARCHAR(255), AppointmentID INTEGER)");
+            query.executeUpdate();
+
+            //Appointment
+            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Appointment(ID INTEGER PRIMARY KEY, Data DATE, Horario VARCHAR(255), Comentario VARCHAR(255), IDAnimal INTEGER, IDVet INTEGER, IDTreatment INTEGER, Done INTEGER)");
             query.executeUpdate();
 
         } catch(SQLException e) {
