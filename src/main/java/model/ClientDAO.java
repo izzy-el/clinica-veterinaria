@@ -60,11 +60,11 @@ public class ClientDAO extends DAO {
     }
 
     public ArrayList<Client> retrieveAll() {
-        return this.retrieve("SELECT * FROM model.Client");
+        return this.retrieve("SELECT * FROM Client");
     }
 
     public Client retrieveById(int id) {
-        ArrayList<Client> clients = this.retrieve("SELECT * FROM model.Client WHERE ID = " + id);
+        ArrayList<Client> clients = this.retrieve("SELECT * FROM Client WHERE ID = " + id);
         return (clients.isEmpty() ? null : clients.get(0));
     }
 

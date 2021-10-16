@@ -1,8 +1,8 @@
 package view;
 
 import java.util.List;
-import model.Client;
-import model.ClientDAO;
+import model.Veterinarian;
+import model.VeterinarianDAO;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -13,9 +13,9 @@ import model.ClientDAO;
  *
  * @author izael
  */
-public class ClientTableModel extends GenericTableModel {
-    public ClientTableModel(List vDados) {
-        super(vDados, new String[]{"Name", "Address", "Phone", "CEP", "Email"});
+public class VeterinarianTableModel extends GenericTableModel {
+    public VeterinarianTableModel(List vDados) {
+        super(vDados, new String[]{"Name", "Address", "Phone", "Email"});
     }
     
     @Override
@@ -32,9 +32,6 @@ public class ClientTableModel extends GenericTableModel {
                 
             case 3:
                 return String.class;
-                
-            case 4:
-                return String.class;
             
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -43,24 +40,21 @@ public class ClientTableModel extends GenericTableModel {
     
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Client client = (Client) vDados.get(rowIndex);
+        Veterinarian veterinarian = (Veterinarian) vDados.get(rowIndex);
         
         switch(columnIndex) {
             case 0:
-                return client.getName();
+                return veterinarian.getVetName();
             
             case 1:
-                return client.getAddress();
+                return veterinarian.getVetAddress();
                 
             case 2:
-                return client.getPhone();
+                return veterinarian.getVetPhone();
                 
             case 3:
-                return client.getCep();
-                
-            case 4:
-                return client.getEmail();
-                
+                return veterinarian.getVetEmail();
+                                
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -68,35 +62,30 @@ public class ClientTableModel extends GenericTableModel {
     
     @Override
     public void setValueAt(Object value, int rowIndex, int columnIndex) {
-        Client client = (Client) vDados.get(rowIndex);
+        Veterinarian veterinarian = (Veterinarian) vDados.get(rowIndex);
         
         switch(columnIndex) {
             case 0:
-                client.setName((String) value);
+                veterinarian.setVetName((String) value);
                 break;
             
             case 1:
-                client.setAddress((String) value);
+                veterinarian.setVetAddress((String) value);
                 break;
                 
             case 2:
-                client.setPhone((String) value);
+                veterinarian.setVetPhone((String) value);
                 break;
                 
             case 3:
-                client.setCep((String) value);
+                veterinarian.setVetEmail((String) value);
                 break;
-                
-            case 4:
-                client.setEmail((String) value);
-                break;
-                
+                                
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
-                
         }
         
-        ClientDAO.getInstance().update(client);
+        VeterinarianDAO.getInstance().update(veterinarian);
     }
     
     @Override

@@ -63,11 +63,11 @@ public class AppointmentDAO extends DAO {
     }
 
     public ArrayList<Appointment> retrieveAll() {
-        return this.retrieve("SELECT * FROM model.Appointment");
+        return this.retrieve("SELECT * FROM Appointment");
     }
 
     public Appointment retrieveById(int id) {
-        ArrayList<Appointment> appointments = this.retrieve("SELECT * FROM model.Appointment WHERE ID = " + id);
+        ArrayList<Appointment> appointments = this.retrieve("SELECT * FROM Appointment WHERE ID = " + id);
         return (appointments.isEmpty() ? null : appointments.get(0));
     }
 

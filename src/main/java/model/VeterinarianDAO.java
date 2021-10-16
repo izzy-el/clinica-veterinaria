@@ -59,11 +59,11 @@ public class VeterinarianDAO extends DAO {
     }
 
     public ArrayList<Veterinarian> retrieveAll() {
-        return this.retrieve("SELECT * FROM model.Veterinarian");
+        return this.retrieve("SELECT * FROM Veterinarian");
     }
 
     public Veterinarian retrieveById(int id) {
-        ArrayList<Veterinarian> veterinarians = this.retrieve("SELECT * FROM model.Veterinarian WHERE ID = " + id);
+        ArrayList<Veterinarian> veterinarians = this.retrieve("SELECT * FROM Veterinarian WHERE ID = " + id);
         return (veterinarians.isEmpty() ? null : veterinarians.get(0));
     }
 

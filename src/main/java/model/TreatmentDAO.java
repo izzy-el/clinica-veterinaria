@@ -61,11 +61,11 @@ public class TreatmentDAO extends DAO {
     }
 
     public ArrayList<Treatment> retrieveAll() {
-        return this.retrieve("SELECT * FROM model.Treatment");
+        return this.retrieve("SELECT * FROM Treatment");
     }
 
     public Treatment retrieveById(int id) {
-        ArrayList<Treatment> treatments = this.retrieve("SELECT * FROM model.Treatment WHERE ID = " + id);
+        ArrayList<Treatment> treatments = this.retrieve("SELECT * FROM Treatment WHERE ID = " + id);
         return (treatments.isEmpty() ? null : treatments.get(0));
     }
 

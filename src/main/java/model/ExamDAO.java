@@ -57,11 +57,11 @@ public class ExamDAO extends DAO {
     }
 
     public ArrayList<Exam> retrieveAll() {
-        return this.retrieve("SELECT * FROM model.Exam");
+        return this.retrieve("SELECT * FROM Exam");
     }
 
     public Exam retrieveById(int id) {
-        ArrayList<Exam> exams = this.retrieve("SELECT * FROM model.Exam WHERE ID = " + id);
+        ArrayList<Exam> exams = this.retrieve("SELECT * FROM Exam WHERE ID = " + id);
         return (exams.isEmpty() ? null : exams.get(0));
     }
 

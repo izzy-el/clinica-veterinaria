@@ -22,16 +22,16 @@ public class AnimalTableModel extends GenericTableModel {
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         switch(columnIndex) {
-            case 1:
+            case 0:
                 return String.class;
 
-            case 2:
+            case 1:
                 return Integer.class;
 
-            case 3:
+            case 2:
                 return String.class;
 
-            case 4:
+            case 3:
                 return String.class;
 
             default:
@@ -44,16 +44,16 @@ public class AnimalTableModel extends GenericTableModel {
         Animal animal = (Animal) vDados.get(rowIndex);
         
         switch(columnIndex) {
-            case 1:
+            case 0:
                 return animal.getName();
 
-            case 2:
+            case 1:
                 return animal.getAge();
 
-            case 3:
+            case 2:
                 return animal.getGender();
 
-            case 4:
+            case 3:
                 return animal.getSpecie();
 
             default:
@@ -66,17 +66,17 @@ public class AnimalTableModel extends GenericTableModel {
         Animal animal = (Animal) vDados.get(rowIndex);
         
         switch(columnIndex) {
-            case 1:
+            case 0:
                 animal.setName((String) value);
                 break;
 
-            case 2:
+            case 1:
                 animal.setAge((Integer) value);
 
-            case 3:
+            case 2:
                 animal.setGender((String) value);
 
-            case 4:
+            case 3:
                 animal.setSpecie((String) value);
 
             default:

@@ -56,11 +56,11 @@ public class SpeciesDAO extends DAO{
     }
 
     public ArrayList<Species> retrieveAll() {
-        return this.retrieve("SELECT * FROM model.Species");
+        return this.retrieve("SELECT * FROM Species");
     }
 
     public Species retrieveById(int id) {
-        ArrayList<Species> species = this.retrieve("SELECT * FROM model.Species WHERE ID = " + id);
+        ArrayList<Species> species = this.retrieve("SELECT * FROM Species WHERE ID = " + id);
         return (species.isEmpty() ? null : species.get(0));
     }
 
