@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AnimalDAO extends DAO {
+    //FIXME: it is necessary to struct this class better, allowing it to get the animal's specie
+    // and probably removing the ClientID reference.
     private AnimalDAO() {
         connect();
         createTable();
