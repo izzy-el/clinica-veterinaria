@@ -77,7 +77,7 @@ public class AnimalDAO extends DAO {
     //     return this.retrieve("SELECT * FROM model.Animal WHERE ClientId = " + client.getID());
     // }
 
-    public void update(Animal animal, Client client) {
+    public void update(Animal animal) {
         try {
             PreparedStatement statement;
             //model.Animal (Name, Age, Gender, Specie) VALUES (?,?,?,?)

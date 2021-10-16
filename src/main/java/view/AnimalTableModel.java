@@ -16,7 +16,7 @@ import model.AnimalDAO;
  */
 public class AnimalTableModel extends GenericTableModel {
     public AnimalTableModel(List vDados) {
-        super(vDados, new String[]{"Name", "Age", "Gender", "ClientId"});
+        super(vDados, new String[]{"Name", "Age", "Gender", "Specie"});
     }
 
     @Override
@@ -32,7 +32,7 @@ public class AnimalTableModel extends GenericTableModel {
                 return String.class;
 
             case 4:
-                return Integer.class;
+                return String.class;
 
             default:
             throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -54,7 +54,7 @@ public class AnimalTableModel extends GenericTableModel {
                 return animal.getGender();
 
             case 4:
-                return animal.getClientId();
+                return animal.getSpecie();
 
             default:
             throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -64,7 +64,6 @@ public class AnimalTableModel extends GenericTableModel {
     @Override
     public void setValueAt(Object value, int rowIndex, int columnIndex) {
         Animal animal = (Animal) vDados.get(rowIndex);
-        Client client = (Client) vDados.get(animal.getClientId());
         
         switch(columnIndex) {
             case 1:
@@ -78,13 +77,13 @@ public class AnimalTableModel extends GenericTableModel {
                 animal.setGender((String) value);
 
             case 4:
-                animal.setClientId((Integer) value);
+                animal.setSpecie((String) value);
 
             default:
             throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
 
-        AnimalDAO.getInstance().update(animal, client);
+        AnimalDAO.getInstance().update(animal);
     }
 
     @Override
