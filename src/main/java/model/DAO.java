@@ -48,7 +48,7 @@ public abstract class DAO {
         PreparedStatement query;
         try {
             //model.Animal
-            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Animal(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Age INTEGER, Gender VARCHAR(255), ClientId INTEGER)");
+            query = DAO.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Animal(ID INTEGER PRIMARY KEY, Name VARCHAR(255), Age INTEGER, Gender VARCHAR(255), Specie VARCHAR(255))");
             query.executeUpdate();
 
             //model.Client

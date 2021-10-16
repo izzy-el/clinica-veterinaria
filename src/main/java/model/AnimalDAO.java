@@ -21,28 +21,14 @@ public class AnimalDAO extends DAO {
     }
 
     //CRUD starts here
-    public void create(String name, int age, String gender, Client client) {
+    public void create(String name, int age, String gender, String specie) {
         try {
             PreparedStatement statement;
-            statement = DAO.connect().prepareStatement("INSERT INTO Animal (Name, Age, Gender, ClientId) VALUES (?,?,?,?)");
+            statement = DAO.connect().prepareStatement("INSERT INTO Animal (Name, Age, Gender, Specie) VALUES (?,?,?,?)");
             statement.setString(1, name);
             statement.setInt(2, age);
             statement.setString(3, gender);
-            statement.setInt(4, client.getID());
-            statement.executeUpdate();
-        } catch(SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void create(String name, int age, String gender, int client) {
-        try {
-            PreparedStatement statement;
-            statement = DAO.connect().prepareStatement("INSERT INTO Animal (Name, Age, Gender, ClientId) VALUES (?,?,?,?)");
-            statement.setString(1, name);
-            statement.setInt(2, age);
-            statement.setString(3, gender);
-            statement.setInt(4, client);
+            statement.setString(4, specie);
             statement.executeUpdate();
         } catch(SQLException e) {
             System.out.println(e.getMessage());
@@ -52,7 +38,7 @@ public class AnimalDAO extends DAO {
     private Animal buildObject(ResultSet rs) throws SQLException {
         Animal animal = null;
         try {
-            animal = new Animal(rs.getInt("ID"), rs.getString("Name"), rs.getInt("Age"), rs.getString("Gender"), rs.getInt("ClientId")); //rs.getObject("ClientId"));
+            animal = new Animal(rs.getInt("ID"), rs.getString("Name"), rs.getInt("Age"), rs.getString("Gender"), rs.getString("Specie")); //rs.getObject("ClientId"));
         } catch(SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -75,31 +61,31 @@ public class AnimalDAO extends DAO {
     }
 
     public ArrayList<Animal> retrieveAll() {
-        return this.retrieve("SELECT * FROM model.Animal");
+        return this.retrieve("SELECT * FROM Animal");
     }
 
     public Animal retrieveById(int id) {
-        ArrayList<Animal> animals = this.retrieve("SELECT * FROM model.Animal WHERE ID = " + id);
+        ArrayList<Animal> animals = this.retrieve("SELECT * FROM Animal WHERE ID = " + id);
         return (animals.isEmpty() ? null : animals.get(0));
     }
 
-    public ArrayList<Animal> retrieveByClientId(int id) {
-        return this.retrieve("SELECT * FROM model.Animal WHERE ClientId = " + id);
-    }
+    // public ArrayList<Animal> retrieveByClientId(int id) {
+    //     return this.retrieve("SELECT * FROM model.Animal WHERE ClientId = " + id);
+    // }
 
-    public ArrayList<Animal> retrieveByClientId(Client client) {
-        return this.retrieve("SELECT * FROM model.Animal WHERE ClientId = " + client.getID());
-    }
+    // public ArrayList<Animal> retrieveByClientId(Client client) {
+    //     return this.retrieve("SELECT * FROM model.Animal WHERE ClientId = " + client.getID());
+    // }
 
     public void update(Animal animal, Client client) {
         try {
             PreparedStatement statement;
-            //model.Animal (Name, Age, Gender, ClientId) VALUES (?,?,?,?)
-            statement = DAO.connect().prepareStatement("UPDATE Animal SET Name = ?, Age = ?, Gender = ?, ClientId = ?");
+            //model.Animal (Name, Age, Gender, Specie) VALUES (?,?,?,?)
+            statement = DAO.connect().prepareStatement("UPDATE Animal SET Name = ?, Age = ?, Gender = ?, Specie = ?");
             statement.setString(1, animal.getName());
             statement.setString(2, String.valueOf(animal.getAge()));
             statement.setString(3, animal.getGender());
-            statement.setString(4, String.valueOf(client.getID()));
+            statement.setString(4, animal.getSpecie());
             statement.executeUpdate();
         } catch(Exception e) {
             System.out.println(e.getMessage());
