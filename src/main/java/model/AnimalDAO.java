@@ -38,7 +38,7 @@ public class AnimalDAO extends DAO {
     private Animal buildObject(ResultSet rs) throws SQLException {
         Animal animal = null;
         try {
-            animal = new Animal(rs.getInt("ID"), rs.getString("Name"), rs.getInt("Age"), rs.getString("Gender"), rs.getString("Specie")); //rs.getObject("ClientId"));
+            animal = new Animal(rs.getInt("ID"), rs.getString("Name"), rs.getInt("Age"), rs.getString("Gender"), rs.getString("Specie"), rs.getInt("IDClient")); //rs.getObject("ClientId"));
         } catch(SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -69,23 +69,20 @@ public class AnimalDAO extends DAO {
         return (animals.isEmpty() ? null : animals.get(0));
     }
 
-    // public ArrayList<Animal> retrieveByClientId(int id) {
-    //     return this.retrieve("SELECT * FROM model.Animal WHERE ClientId = " + id);
-    // }
-
-    // public ArrayList<Animal> retrieveByClientId(Client client) {
-    //     return this.retrieve("SELECT * FROM model.Animal WHERE ClientId = " + client.getID());
-    // }
+     public ArrayList<Animal> retrieveByClientId(int id) {
+         return this.retrieve("SELECT * FROM Animal WHERE IDClient = " + id);
+     }
 
     public void update(Animal animal) {
         try {
             PreparedStatement statement;
             //model.Animal (Name, Age, Gender, Specie) VALUES (?,?,?,?)
-            statement = DAO.connect().prepareStatement("UPDATE Animal SET Name = ?, Age = ?, Gender = ?, Specie = ?");
+            statement = DAO.connect().prepareStatement("UPDATE Animal SET Name = ?, Age = ?, Gender = ?, Specie = ?, IDClient = ?");
             statement.setString(1, animal.getName());
             statement.setString(2, String.valueOf(animal.getAge()));
             statement.setString(3, animal.getGender());
             statement.setString(4, animal.getSpecie());
+            statement.setInt(5, animal.getIdClient());
             statement.executeUpdate();
         } catch(Exception e) {
             System.out.println(e.getMessage());

@@ -16,14 +16,16 @@ public class Animal {
     private int age;
     private String gender;
     private String specie;
+    private int idClient;
 
     //Constructor
-    public Animal(int id, String name, int age, String gender, String specie) {
+    public Animal(int id, String name, int age, String gender, String specie, int idClient) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.specie = specie;
+        this.idClient = idClient;
     }
 
     //Getters
@@ -46,6 +48,10 @@ public class Animal {
     public String getSpecie() {
         return specie;
     }
+    
+    public int getIdClient() {
+        return idClient;
+    }
 
     //Setters
     public void setId(int id) {
@@ -66,6 +72,10 @@ public class Animal {
 
     public void setSpecie(String specie) {
         this.specie = specie;
+    }
+    
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
     }
 
     @Override
