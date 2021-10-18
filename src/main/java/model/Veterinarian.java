@@ -2,13 +2,15 @@ package model;
 
 public class Veterinarian {
     //Attributes
+    private int id;
     private String vetName;
     private String vetAddress;
     private String vetPhone;
     private String vetEmail;
 
     //Constructor
-    public Veterinarian(String vetName, String vetAddress, String vetPhone, String vetEmail) {
+    public Veterinarian(int id, String vetName, String vetAddress, String vetPhone, String vetEmail) {
+        this.id = id;
         this.vetName = vetName;
         this.vetAddress = vetAddress;
         this.vetPhone = vetPhone;
@@ -16,6 +18,10 @@ public class Veterinarian {
     }
 
     //Getters
+    public int getId() {
+        return id;
+    }
+    
     public String getVetName() {
         return vetName;
     }

@@ -1,10 +1,11 @@
 package model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class Treatment {
     //Attributes
+    private int id;
     private String name;
     private Date endDate;
     private Date initialDate;
@@ -14,7 +15,8 @@ public class Treatment {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     //Constructor
-    public Treatment(int idAnimal, String name, Date initialDate, Date endDate, boolean done) {
+    public Treatment(int id, int idAnimal, String name, Date initialDate, Date endDate, boolean done) {
+        this.id = id;
         this.idAnimal = idAnimal;
         this.name = name;
         this.initialDate = initialDate;
@@ -23,6 +25,10 @@ public class Treatment {
     }
 
     //Getters
+    public int getId() {
+        return id;
+    }
+    
     public String getName() {
         return name;
     }

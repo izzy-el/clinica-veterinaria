@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package view;
-import java.sql.Date;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import model.Treatment;
 import model.TreatmentDAO;
@@ -12,9 +14,11 @@ import model.TreatmentDAO;
  *
  * @author izael
  */
-public class TreatmentTableModel extends GenericTableModel{
+public class TreatmentTableModel extends GenericTableModel {
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    
     public TreatmentTableModel(List vDados) {
-        super(vDados, new String[]{"IDAnimal", "Name", "InitialDate", "EndDate", "Done"});
+        super(vDados, new String[]{"Name", "InitialDate", "EndDate", "Done"});
     }
     
     @Override
@@ -25,15 +29,12 @@ public class TreatmentTableModel extends GenericTableModel{
             
             case 1:
                 return String.class;
-            
+                
             case 2:
                 return String.class;
                 
             case 3:
-                return String.class;
-                
-            case 4:
-                return String.class;
+                return Boolean.class;
             
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -44,20 +45,17 @@ public class TreatmentTableModel extends GenericTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         Treatment treatment = (Treatment) vDados.get(rowIndex);
         
-        switch(columnIndex) {
+        switch(columnIndex) {            
             case 0:
-                return treatment.getIdAnimal();
-            
-            case 1:
                 return treatment.getName();
                 
+            case 1:
+                return sdf.format(treatment.getInitialDate());
+                
             case 2:
-                return treatment.getInitialDate();
+                return sdf.format(treatment.getEndDate());
                 
             case 3:
-                return treatment.getEndDate();
-                
-            case 4:
                 return treatment.isDone();
                 
             default:
@@ -70,24 +68,29 @@ public class TreatmentTableModel extends GenericTableModel{
         Treatment treatment = (Treatment) vDados.get(rowIndex);
         
         switch(columnIndex) {
-//            case 0:
-//                treatment.
-//                break;
-            
-            case 1:
+            case 0:
                 treatment.setName((String) value);
                 break;
                 
+            case 1:
+                try {
+                    treatment.setInitialDate(sdf.parse((String) value));
+                } catch(ParseException e) {
+                    e.getMessage();
+                }
+                break;
+
+                
             case 2:
-                treatment.setInitialDate((Date) value);
+                try {
+                    treatment.setEndDate(sdf.parse((String) value));
+                } catch(ParseException e) {
+                    e.getMessage();
+                }
                 break;
                 
             case 3:
-                treatment.setEndDate((Date) value);
-                break;
-                
-            case 4:
-                treatment.setDone((boolean) value);
+                treatment.setDone((Boolean) value);
                 break;
                 
             default:

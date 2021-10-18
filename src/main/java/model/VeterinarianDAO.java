@@ -36,7 +36,7 @@ public class VeterinarianDAO extends DAO {
     private Veterinarian buildObject(ResultSet rs) throws SQLException {
         Veterinarian veterinarian = null;
         try {
-            veterinarian = new Veterinarian(rs.getString("Name"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Email"));
+            veterinarian = new Veterinarian(rs.getInt("ID"), rs.getString("Name"), rs.getString("Address"), rs.getString("Phone"), rs.getString("Email"));
         } catch(SQLException e) {
             System.out.println(e.getMessage());
         }

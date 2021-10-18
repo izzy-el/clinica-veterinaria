@@ -38,7 +38,7 @@ public class TreatmentDAO extends DAO {
     private Treatment buildObject(ResultSet rs) throws SQLException {
         Treatment treatment = null;
         try {
-            treatment = new Treatment(rs.getInt("IDAnimal"), rs.getString("Name"), rs.getDate("InitialDate"), rs.getDate("EndDate"), rs.getBoolean("Done"));
+            treatment = new Treatment(rs.getInt("ID"), rs.getInt("IDAnimal"), rs.getString("Name"), rs.getDate("InitialDate"), rs.getDate("EndDate"), rs.getBoolean("Done"));
         } catch(SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -68,6 +68,10 @@ public class TreatmentDAO extends DAO {
         ArrayList<Treatment> treatments = this.retrieve("SELECT * FROM Treatment WHERE ID = " + id);
         return (treatments.isEmpty() ? null : treatments.get(0));
     }
+    
+    public ArrayList<Treatment> retrieveByAnimalId(int id) {
+        return this.retrieve("SELECT * FROM Treatment WHERE IDAnimal = " + id);
+    }
 
     public void update(Treatment treatment) {
         try {
@@ -75,8 +79,8 @@ public class TreatmentDAO extends DAO {
             statement = DAO.connect().prepareStatement("UPDATE Treatment SET IDAnimal = ?, Name = ?, InitialDate = ?, EndDate = ?, Done = ?");
             statement.setInt(1, treatment.getIdAnimal());
             statement.setString(2, treatment.getName());
-            statement.setDate(3, treatment.getInitialDate());
-            statement.setDate(4, treatment.getInitialDate());
+            statement.setDate(3, new java.sql.Date(treatment.getInitialDate().getTime()));
+            statement.setDate(4, new java.sql.Date(treatment.getInitialDate().getTime()));
             statement.setBoolean(5, treatment.isDone());
             statement.executeUpdate();
         } catch(SQLException e) {

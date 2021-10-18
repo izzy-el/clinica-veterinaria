@@ -35,7 +35,7 @@ public class AnimalTableModel extends GenericTableModel {
                 return String.class;
 
             default:
-            throw new IndexOutOfBoundsException("columnIndex out of bounds");
+                throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
     }
 
@@ -57,7 +57,7 @@ public class AnimalTableModel extends GenericTableModel {
                 return animal.getSpecie();
 
             default:
-            throw new IndexOutOfBoundsException("columnIndex out of bounds");
+                throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
     }
 
@@ -80,7 +80,7 @@ public class AnimalTableModel extends GenericTableModel {
                 animal.setSpecie((String) value);
 
             default:
-            throw new IndexOutOfBoundsException("columnIndex out of bounds");
+                throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
 
         AnimalDAO.getInstance().update(animal);
