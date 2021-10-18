@@ -25,7 +25,7 @@ public class Home extends javax.swing.JFrame {
         Controller.setTableModel(jTable5, new AnimalTableModel(AnimalDAO.getInstance().retrieveAll()));
         Controller.setTableModel(jTable3, new ClientTableModel(ClientDAO.getInstance().retrieveAll()));
         Controller.setTableModel(jTable4, new VeterinarianTableModel(VeterinarianDAO.getInstance().retrieveAll()));
-        Controller.setTextFields(jTextField1);
+        Controller.setTextFields(jTextField1, jTextField2);
     }
 
     /**
@@ -180,7 +180,7 @@ public class Home extends javax.swing.JFrame {
 
         jLabel1.setText("Cliente");
 
-        jTextField1.setText("nenhum cliente selecionado");
+        jTextField1.setEditable(false);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -189,7 +189,7 @@ public class Home extends javax.swing.JFrame {
 
         jLabel2.setText("Animal");
 
-        jTextField2.setText("nenhum animal selecionado");
+        jTextField2.setEditable(false);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -198,7 +198,7 @@ public class Home extends javax.swing.JFrame {
 
         jLabel3.setText("Tratamento");
 
-        jTextField3.setText("nenhum tratamento selecionado");
+        jTextField3.setEditable(false);
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -446,6 +446,11 @@ public class Home extends javax.swing.JFrame {
 
             }
         ));
+        jTable5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTable5MousePressed(evt);
+            }
+        });
         jScrollPane8.setViewportView(jTable5);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -1121,8 +1126,13 @@ public class Home extends javax.swing.JFrame {
 
     private void jTable3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MousePressed
         // TODO add your handling code here:
-        Controller.setSelected(((GenericTableModel) jTable3.getModel()).getItem(jTable3.getSelectedRow()));
+        Controller.setClientSelected(((GenericTableModel) jTable3.getModel()).getItem(jTable3.getSelectedRow()));
     }//GEN-LAST:event_jTable3MousePressed
+
+    private void jTable5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MousePressed
+        // TODO add your handling code here:
+        Controller.setAnimalSelected(((GenericTableModel) jTable5.getModel()).getItem(jTable5.getSelectedRow()));
+    }//GEN-LAST:event_jTable5MousePressed
 
     
     
@@ -1137,7 +1147,7 @@ public class Home extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("GTK+".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
