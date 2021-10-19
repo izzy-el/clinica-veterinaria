@@ -1,11 +1,17 @@
 package controller;
 
 import com.toedter.calendar.JDateChooser;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import model.Client;
 import model.Animal;
 import model.Appointment;
+import model.Exam;
+import model.ExamDAO;
 import model.Treatment;
 import model.Veterinarian;
 import view.GenericTableModel;
@@ -34,6 +40,7 @@ public class Controller {
     private static Treatment selectedTreatment = null;
     private static JTextField selectedTreatmentTextField = null;
     private static JTextField selectedTreatmentNameTextField = null;
+    private static JTextField selectedTreatmentNameOnAppointmentTextField = null;
     private static JDateChooser selectedTreatmentInitialDateTextField = null;
     private static JDateChooser selectedTreatmentEndDateTextField = null;
     
@@ -48,10 +55,20 @@ public class Controller {
     private static JDateChooser selectedAppointmentDataTextField = null;
     private static JTextField selectedAppointmentHorarioTextField = null;
     private static JTextField selectedAppointmentCommentTextField = null;
+    private static JTextArea selectedAppointmentCommentOnAppointmentTextField = null;
     
     
     public static void setTableModel(JTable table, GenericTableModel tableModel) {
         table.setModel(tableModel);
+    }
+    
+    public static void setExamListModel(JList list) {
+        DefaultListModel listModel = new DefaultListModel();
+        ArrayList<Exam> listWithData = ExamDAO.getInstance().retrieveByAppointmentId(Controller.getSelectedAppointment().getId());
+        for(int i = 0; i < listWithData.size(); i++) {
+            listModel.addElement(listWithData.get(i).getExamName());
+        }
+        list.setModel(listModel);
     }
     
     public static void setTextFields(JTextField client, JTextField animal, JTextField treatment) {
@@ -75,10 +92,11 @@ public class Controller {
         selectedAnimalSpecieTextField = animalSpecie;
     }
     
-    public static void setTreatmentInfoTextFields(JTextField treatmentName, JDateChooser treatmentInitialDate, JDateChooser treatmentEndDate) {
+    public static void setTreatmentInfoTextFields(JTextField treatmentNameOnAppointment, JTextField treatmentName, JDateChooser treatmentInitialDate, JDateChooser treatmentEndDate) {
         selectedTreatmentNameTextField = treatmentName;
         selectedTreatmentInitialDateTextField = treatmentInitialDate;
         selectedTreatmentEndDateTextField = treatmentEndDate;
+        selectedTreatmentNameOnAppointmentTextField = treatmentNameOnAppointment;
     }
     
     public static void setVeterinarianInfoTextFields(JTextField vet, JTextField veterinarianName, JTextField veterinarianAddress, JTextField veterinarianPhone, JTextField veterinarianEmail) {
@@ -90,10 +108,10 @@ public class Controller {
         
     }
     
-    public static void setAppointmentInfoTextFields(JDateChooser data, JTextField comment) {
+    public static void setAppointmentInfoTextFields(JDateChooser data, JTextField comment, JTextArea commentOnAppointment) {
         selectedAppointmentDataTextField = data;
-//        selectedAppointmentHorarioTextField = horario;
         selectedAppointmentCommentTextField = comment;
+        selectedAppointmentCommentOnAppointmentTextField = commentOnAppointment;
     }
     
     public static Client getSelectedClient() {
@@ -112,6 +130,10 @@ public class Controller {
         return selectedTreatment;
     }
     
+    public static Appointment getSelectedAppointment() {
+        return selectedAppointment;
+    }
+    
     public static void setSelected(Object selected) {
         if(selected instanceof Client) {
             selectedClient = (Client) selected;
@@ -128,8 +150,12 @@ public class Controller {
             selectedAnimalSpecieTextField.setText("");
             selectedTreatmentTextField.setText("");
             selectedTreatmentNameTextField.setText("");
+            selectedTreatmentNameOnAppointmentTextField.setText("");
             selectedTreatmentInitialDateTextField.setDate(null);
             selectedTreatmentEndDateTextField.setDate(null);
+            selectedAppointmentDataTextField.setDate(null);
+            selectedAppointmentCommentTextField.setText("");
+            selectedAppointmentCommentOnAppointmentTextField.setText("");
         } else if(selected instanceof Animal) {
             selectedAnimal = (Animal) selected;
             selectedAnimalTextField.setText(selectedAnimal.getName());
@@ -141,15 +167,24 @@ public class Controller {
             selectedTreatmentNameTextField.setText("");
             selectedTreatmentInitialDateTextField.setDate(null);
             selectedTreatmentEndDateTextField.setDate(null);
-//            selectedAppointmentDataTextField.setDate(null);
-//            selectedAppointmentHorarioTextField.setText("");
-//            selectedAppointmentCommentTextField.setText("");
+            selectedTreatmentTextField.setText("");
+            selectedTreatmentNameTextField.setText("");
+            selectedTreatmentNameOnAppointmentTextField.setText("");
+            selectedTreatmentInitialDateTextField.setDate(null);
+            selectedTreatmentEndDateTextField.setDate(null);
+            selectedAppointmentDataTextField.setDate(null);
+            selectedAppointmentCommentTextField.setText("");
+            selectedAppointmentCommentOnAppointmentTextField.setText("");
         } else if(selected instanceof Treatment) {
             selectedTreatment = (Treatment) selected;
             selectedTreatmentTextField.setText(selectedTreatment.getName());
             selectedTreatmentNameTextField.setText(selectedTreatment.getName());
             selectedTreatmentInitialDateTextField.setDate(selectedTreatment.getInitialDate());
             selectedTreatmentEndDateTextField.setDate(selectedTreatment.getEndDate());
+            selectedTreatmentNameOnAppointmentTextField.setText(selectedTreatment.getName());
+            selectedAppointmentDataTextField.setDate(null);
+            selectedAppointmentCommentTextField.setText("");
+            selectedAppointmentCommentOnAppointmentTextField.setText("");
         } else if(selected instanceof Veterinarian) {
             selectedVeterinarian = (Veterinarian) selected;
             selectedVeterinarianTextField.setText(selectedVeterinarian.getVetName());
@@ -157,10 +192,19 @@ public class Controller {
             selectedVeterinarianAddressTextField.setText(selectedVeterinarian.getVetAddress());
             selectedVeterinarianPhoneTextField.setText(selectedVeterinarian.getVetPhone());
             selectedVeterinarianEmailTextField.setText(selectedVeterinarian.getVetEmail());
+            selectedTreatmentTextField.setText("");
+            selectedTreatmentNameTextField.setText("");
+            selectedTreatmentNameOnAppointmentTextField.setText("");
+            selectedTreatmentInitialDateTextField.setDate(null);
+            selectedTreatmentEndDateTextField.setDate(null);
+            selectedAppointmentDataTextField.setDate(null);
+            selectedAppointmentCommentTextField.setText("");
+            selectedAppointmentCommentOnAppointmentTextField.setText("");
         } else if(selected instanceof Appointment) {
             selectedAppointment = (Appointment) selected;
             selectedAppointmentDataTextField.setDate(selectedAppointment.getDate());
             selectedAppointmentCommentTextField.setText(selectedAppointment.getComments());
+            selectedAppointmentCommentOnAppointmentTextField.setText(selectedAppointment.getComments());
         }
     }
         

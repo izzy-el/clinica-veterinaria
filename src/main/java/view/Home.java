@@ -7,10 +7,8 @@ package view;
 
 import controller.Controller;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import java.text.SimpleDateFormat;
 import model.AnimalDAO;
 import model.ClientDAO;
 import model.VeterinarianDAO;
@@ -24,19 +22,16 @@ import model.AppointmentDAO;
 public class Home extends javax.swing.JFrame {
     
     private void myInitComponents() throws ParseException {
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Controller.setTableModel(jTable5, new AnimalTableModel(AnimalDAO.getInstance().retrieveAll()));
         Controller.setTableModel(jTable3, new ClientTableModel(ClientDAO.getInstance().retrieveAll()));
         Controller.setTableModel(jTable4, new VeterinarianTableModel(VeterinarianDAO.getInstance().retrieveAll()));
         Controller.setTableModel(jTable1, new TreatmentTableModel(TreatmentDAO.getInstance().retrieveAll()));
-//        Controller.setTableModel(jTable2, new AppointmentTableModel(AppointmentDAO.getInstance().retrieveAll()));
         Controller.setTextFields(jTextField1, jTextField2, jTextField3);
         Controller.setClientsInfoTextFields(jTextField10, jTextField12, jTextField11, jTextField13, jTextField23);
         Controller.setAnimalInfoTextFields(jTextField14, jTextField15, jTextField16, jTextField17);
-        Controller.setTreatmentInfoTextFields(jTextField22, jDateChooser2, jDateChooser3);
+        Controller.setTreatmentInfoTextFields(jTextField7, jTextField22, jDateChooser2, jDateChooser3);
         Controller.setVeterinarianInfoTextFields(jTextField6, jTextField18, jTextField24, jTextField20, jTextField19);
-        Controller.setAppointmentInfoTextFields(jDateChooser1, jTextField8);
-        System.out.println(AppointmentDAO.getInstance().retrieveByGivenInfo(1, 1, 1));
+        Controller.setAppointmentInfoTextFields(jDateChooser1, jTextField8, jTextArea4);
     }
 
     /**
@@ -958,7 +953,7 @@ public class Home extends javax.swing.JFrame {
         jLabel16.setText("Encerrar o tratamento");
 
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Exame 1", "Exame 2", "Exame 3"};
+            String[] strings = {};
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -1157,8 +1152,9 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTable2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MousePressed
-        // TODO add your handling code here:
+        // TODO add your handling code here
         Controller.setSelected(((GenericTableModel) jTable2.getModel()).getItem(jTable2.getSelectedRow()));
+        Controller.setExamListModel(jList2);
     }//GEN-LAST:event_jTable2MousePressed
 
     

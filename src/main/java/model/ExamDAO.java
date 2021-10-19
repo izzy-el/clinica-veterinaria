@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ExamDAO extends DAO {
     private ExamDAO() {
@@ -63,6 +64,10 @@ public class ExamDAO extends DAO {
     public Exam retrieveById(int id) {
         ArrayList<Exam> exams = this.retrieve("SELECT * FROM Exam WHERE ID = " + id);
         return (exams.isEmpty() ? null : exams.get(0));
+    }
+    
+    public ArrayList<Exam> retrieveByAppointmentId(int id) {
+        return this.retrieve("SELECT * FROM Exam WHERE AppointmentID = " + id);
     }
 
     public void update(Exam exam) {

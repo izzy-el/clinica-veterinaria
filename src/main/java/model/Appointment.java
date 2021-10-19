@@ -3,6 +3,7 @@ package model;
 import java.util.Date;
 
 public class Appointment {
+    private int id;
     private Date date;
     private String time;
     private String comments;
@@ -12,7 +13,8 @@ public class Appointment {
     private boolean done;
 
     //Constructor
-    public Appointment(Date date, String time, String comments, int idAnimal, int idVet, int idTreatment, boolean done) {
+    public Appointment(int id, Date date, String time, String comments, int idAnimal, int idVet, int idTreatment, boolean done) {
+        this.id = id;
         this.date = date;
         this.time = time;
         this.comments = comments;
@@ -23,6 +25,10 @@ public class Appointment {
     }
 
     //Getters
+    public int getId() {
+        return id;
+    }
+    
     public Date getDate() {
         return date;
     }

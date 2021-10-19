@@ -40,7 +40,7 @@ public class AppointmentDAO extends DAO {
     private Appointment buildObject(ResultSet rs) throws SQLException {
         Appointment appointment = null;
         try {
-            appointment = new Appointment(rs.getDate("Data"), rs.getString("Horario"), rs.getString("Comentario"), rs.getInt("IDAnimal"), rs.getInt("IDVet"), rs.getInt("IDTreatment"), rs.getBoolean("Done"));
+            appointment = new Appointment(rs.getInt("ID"), rs.getDate("Data"), rs.getString("Horario"), rs.getString("Comentario"), rs.getInt("IDAnimal"), rs.getInt("IDVet"), rs.getInt("IDTreatment"), rs.getBoolean("Done"));
         } catch(SQLException e) {
             System.out.println(e.getMessage());
         }

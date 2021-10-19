@@ -32,15 +32,6 @@ public class AppointmentTableModel extends GenericTableModel{
                 
             case 3:
                 return Boolean.class;
-                
-//            case 3:
-//                return String.class;
-//                
-//            case 4:
-//                return String.class;
-//                
-//            case 5:
-//                return String.class;
             
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -63,15 +54,6 @@ public class AppointmentTableModel extends GenericTableModel{
                 
             case 3:
                 return appointment.isDone();
-                
-//            case 3:
-//                return appointment.getIdAnimal();
-//                
-//            case 4:
-//                return appointment.getIdVet();
-//                
-//            case 5:
-//                return appointment.getIdTreatment();
                 
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -98,18 +80,6 @@ public class AppointmentTableModel extends GenericTableModel{
             case 3:
                 appointment.setDone((Boolean) value);
                 break;
-                
-//            case 3:
-//                appointment.setIdAnimal((Integer) value);
-//                break;
-//                
-//            case 4:
-//                appointment.setIdVet((Integer) value);
-//                break;
-//                
-//            case 5:
-//                appointment.setIdTreatment((Integer) value);
-//                break;
                 
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
