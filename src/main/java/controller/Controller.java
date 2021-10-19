@@ -57,6 +57,9 @@ public class Controller {
     private static JTextField selectedAppointmentCommentTextField = null;
     private static JTextArea selectedAppointmentCommentOnAppointmentTextField = null;
     
+    private static Exam selectedExam = null;
+    private static JTextField selectedExamTextField = null;
+    
     
     public static void setTableModel(JTable table, GenericTableModel tableModel) {
         table.setModel(tableModel);
@@ -114,6 +117,10 @@ public class Controller {
         selectedAppointmentCommentOnAppointmentTextField = commentOnAppointment;
     }
     
+    public static void setExamInfoTextFields(JTextField exam) {
+        selectedExamTextField = exam;
+    }
+    
     public static Client getSelectedClient() {
         return selectedClient;
     }
@@ -132,6 +139,10 @@ public class Controller {
     
     public static Appointment getSelectedAppointment() {
         return selectedAppointment;
+    }
+    
+    public static Exam getSelectedExam() {
+        return selectedExam;
     }
     
     public static void setSelected(Object selected) {
@@ -205,6 +216,9 @@ public class Controller {
             selectedAppointmentDataTextField.setDate(selectedAppointment.getDate());
             selectedAppointmentCommentTextField.setText(selectedAppointment.getComments());
             selectedAppointmentCommentOnAppointmentTextField.setText(selectedAppointment.getComments());
+        } else if(selected instanceof Exam) {
+            selectedExam = (Exam) selected;
+            selectedExamTextField.setText(selectedExam.getExamName());
         }
     }
         

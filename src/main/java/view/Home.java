@@ -7,8 +7,11 @@ package view;
 
 import controller.Controller;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import model.AnimalDAO;
 import model.ClientDAO;
 import model.VeterinarianDAO;
@@ -32,6 +35,7 @@ public class Home extends javax.swing.JFrame {
         Controller.setTreatmentInfoTextFields(jTextField7, jTextField22, jDateChooser2, jDateChooser3);
         Controller.setVeterinarianInfoTextFields(jTextField6, jTextField18, jTextField24, jTextField20, jTextField19);
         Controller.setAppointmentInfoTextFields(jDateChooser1, jTextField8, jTextArea4);
+        Controller.setExamInfoTextFields(jTextField21);
     }
 
     /**
@@ -957,6 +961,11 @@ public class Home extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jList2MousePressed(evt);
+            }
+        });
         jScrollPane11.setViewportView(jList2);
 
         jButton9.setText("Novo Exame");
@@ -1099,8 +1108,13 @@ public class Home extends javax.swing.JFrame {
 
     private void jTable5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MousePressed
         // TODO add your handling code here:
-        Controller.setSelected(((GenericTableModel) jTable5.getModel()).getItem(jTable5.getSelectedRow()));
-        Controller.setTableModel(jTable1, new TreatmentTableModel(TreatmentDAO.getInstance().retrieveByAnimalId(Controller.getSelectedAnimal().getId())));
+        if(Controller.getSelectedClient() == null) {
+            JOptionPane.showMessageDialog(this, "Selecione um cliente.");
+        } else {
+            Controller.setSelected(((GenericTableModel) jTable5.getModel()).getItem(jTable5.getSelectedRow()));
+            Controller.setTableModel(jTable1, new TreatmentTableModel(TreatmentDAO.getInstance().retrieveByAnimalId(Controller.getSelectedAnimal().getId())));
+            Controller.setTableModel(jTable2, new AppointmentTableModel(new ArrayList()));
+        }
     }//GEN-LAST:event_jTable5MousePressed
 
     private void jTextField23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField23ActionPerformed
@@ -1132,6 +1146,7 @@ public class Home extends javax.swing.JFrame {
     private void jTable4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MousePressed
         // TODO add your handling code here:
         Controller.setSelected(((GenericTableModel) jTable4.getModel()).getItem(jTable4.getSelectedRow()));
+        Controller.setTableModel(jTable2, new AppointmentTableModel(new ArrayList()));
     }//GEN-LAST:event_jTable4MousePressed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -1156,6 +1171,12 @@ public class Home extends javax.swing.JFrame {
         Controller.setSelected(((GenericTableModel) jTable2.getModel()).getItem(jTable2.getSelectedRow()));
         Controller.setExamListModel(jList2);
     }//GEN-LAST:event_jTable2MousePressed
+
+    private void jList2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList2MousePressed
+        // TODO add your handling code here:
+        Controller.setSelected(jList2);
+//        Controller.setExamInfoTextFields(jTextField21);
+    }//GEN-LAST:event_jList2MousePressed
 
     
     
