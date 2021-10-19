@@ -71,8 +71,8 @@ public class AppointmentDAO extends DAO {
         return (appointments.isEmpty() ? null : appointments.get(0));
     }
     
-    public ArrayList<Appointment> retriveByGivenInfo(int idAnimal, int idVet, int idTreatment) {
-        return this.retrieve("SELECT * FROM Appointment WHERE IDAnimal = idAnimal AND IDVet = idVet AND IDTreatment = idTreatment");
+    public ArrayList<Appointment> retrieveByGivenInfo(int idAnimal, int idVet, int idTreatment) {
+        return this.retrieve("SELECT * FROM Appointment WHERE IDAnimal = " + idAnimal + " AND IDVet = " + idVet + " AND IDTreatment = " + idTreatment);
     }
 
     public void update(Appointment appointment) {

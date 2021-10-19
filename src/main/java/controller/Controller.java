@@ -90,9 +90,9 @@ public class Controller {
         
     }
     
-    public static void setAppointmentInfoTextFields(JDateChooser data, JTextField horario, JTextField comment) {
+    public static void setAppointmentInfoTextFields(JDateChooser data, JTextField comment) {
         selectedAppointmentDataTextField = data;
-        selectedAppointmentHorarioTextField = horario;
+//        selectedAppointmentHorarioTextField = horario;
         selectedAppointmentCommentTextField = comment;
     }
     
@@ -160,7 +160,6 @@ public class Controller {
         } else if(selected instanceof Appointment) {
             selectedAppointment = (Appointment) selected;
             selectedAppointmentDataTextField.setDate(selectedAppointment.getDate());
-            selectedAppointmentHorarioTextField.setText(selectedAppointment.getTime());
             selectedAppointmentCommentTextField.setText(selectedAppointment.getComments());
         }
     }
