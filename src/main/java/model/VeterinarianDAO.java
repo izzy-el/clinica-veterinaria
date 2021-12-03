@@ -66,6 +66,10 @@ public class VeterinarianDAO extends DAO {
         ArrayList<Veterinarian> veterinarians = this.retrieve("SELECT * FROM Veterinarian WHERE ID = " + id);
         return (veterinarians.isEmpty() ? null : veterinarians.get(0));
     }
+    
+    public ArrayList<Veterinarian> retrieveByName(String name) {
+        return this.retrieve(String.format("SELECT * FROM Veterinarian WHERE Name = '%s'", name));
+    }
 
     public void update(Veterinarian veterinarian) {
         try {
