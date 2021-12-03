@@ -84,6 +84,21 @@ public class VeterinarianDAO extends DAO {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void update(int id, String name, String address, String phone, String email) {
+        try {
+            PreparedStatement statement;
+            statement = DAO.connect().prepareStatement("UPDATE Veterinarian SET Name = ?, Address = ?, Phone = ?, Email = ? WHERE ID = ?");
+            statement.setString(1, name);
+            statement.setString(2, address);
+            statement.setString(3, phone);
+            statement.setString(4, email);
+            statement.setInt(5, id);
+            statement.executeUpdate();
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public void delete(int ID) {
         try {

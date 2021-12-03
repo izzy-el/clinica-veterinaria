@@ -17,6 +17,7 @@ import model.ClientDAO;
 import model.VeterinarianDAO;
 import model.TreatmentDAO;
 import model.AppointmentDAO;
+import model.ExamDAO;
 
 /**
  *
@@ -288,8 +289,18 @@ public class Home extends javax.swing.JFrame {
         jScrollPane5.setViewportView(jTable3);
 
         jButton2.setText("Inserir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton11.setText("Atualizar");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jLabel18.setText("Nome");
 
@@ -302,6 +313,11 @@ public class Home extends javax.swing.JFrame {
         jLabel22.setText("Endereço");
 
         jButton13.setText("Excluir");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jTextField23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -434,10 +450,25 @@ public class Home extends javax.swing.JFrame {
         jLabel26.setText("Espécie");
 
         jButton14.setText("Inserir");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         jButton15.setText("Atualizar");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jButton16.setText("Apagar");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -574,8 +605,18 @@ public class Home extends javax.swing.JFrame {
         });
 
         jButton7.setText("Inserir");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Apagar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -604,6 +645,11 @@ public class Home extends javax.swing.JFrame {
         });
 
         jButton17.setText("Atualizar");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         jLabel28.setText("Telefone");
 
@@ -747,6 +793,11 @@ public class Home extends javax.swing.JFrame {
         jScrollPane10.setViewportView(jTextArea4);
 
         jButton18.setText("Agendar");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -886,6 +937,11 @@ public class Home extends javax.swing.JFrame {
         jLabel31.setText("Data Início");
 
         jButton3.setText("Cadastrar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel32.setText("Data Fim");
 
@@ -984,6 +1040,11 @@ public class Home extends javax.swing.JFrame {
         checkbox2.setLabel("checkbox2");
 
         checkbox3.setLabel("checkbox3");
+        checkbox3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                checkbox3MousePressed(evt);
+            }
+        });
 
         jLabel16.setText("Encerrar o tratamento");
 
@@ -1000,10 +1061,20 @@ public class Home extends javax.swing.JFrame {
         jScrollPane11.setViewportView(jList2);
 
         jButton9.setText("Novo Exame");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jLabel15.setText("Confirma  a realização da consulta");
 
         jButton19.setText("Apagar Consulta");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -1223,6 +1294,105 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         Controller.setTableModel(jTable4, new VeterinarianTableModel(VeterinarianDAO.getInstance().retrieveByName(jTextField5.getText())));
     }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ClientDAO.getInstance().create(jTextField10.getText(), jTextField23.getText(), jTextField12.getText(), jTextField13.getText(), jTextField11.getText());
+        Controller.setTableModel(jTable3, new ClientTableModel(ClientDAO.getInstance().retrieveAll()));
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        ClientDAO.getInstance().delete(Controller.getSelectedClient().getID());
+        AnimalDAO.getInstance().deleteBasedOwner(Controller.getSelectedClient().getID());
+        Controller.setTableModel(jTable3, new ClientTableModel(ClientDAO.getInstance().retrieveAll()));
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        AnimalDAO.getInstance().create(jTextField14.getText(), Integer.valueOf(jTextField15.getText()), jTextField16.getText(), jTextField17.getText(), Controller.getSelectedClient().getID());
+        Controller.setTableModel(jTable5, new AnimalTableModel(AnimalDAO.getInstance().retrieveAll()));
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+        AnimalDAO.getInstance().delete(Controller.getSelectedAnimal().getId());
+        Controller.setTableModel(jTable5, new AnimalTableModel(AnimalDAO.getInstance().retrieveAll()));
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        if(Controller.getSelectedClient() == null) {
+            JOptionPane.showMessageDialog(this, "Selecione um cliente.");
+        }
+        ClientDAO.getInstance().update(Controller.getSelectedClient().getID(), jTextField10.getText(), jTextField23.getText(), jTextField12.getText(), jTextField13.getText(), jTextField11.getText());
+        Controller.setTableModel(jTable3, new ClientTableModel(ClientDAO.getInstance().retrieveAll()));
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+        if(Controller.getSelectedClient() == null) {
+            JOptionPane.showMessageDialog(this, "Selecione um animal.");
+        }
+        AnimalDAO.getInstance().update(Controller.getSelectedAnimal().getId(), jTextField14.getText(), Integer.valueOf(jTextField15.getText()), jTextField16.getText(), jTextField17.getText());
+        Controller.setTableModel(jTable5, new AnimalTableModel(AnimalDAO.getInstance().retrieveByClientId(Controller.getSelectedClient().getID())));
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        VeterinarianDAO.getInstance().create(jTextField18.getText(), jTextField24.getText(), jTextField20.getText(), jTextField19.getText());
+        Controller.setTableModel(jTable4, new VeterinarianTableModel(VeterinarianDAO.getInstance().retrieveAll()));
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        VeterinarianDAO.getInstance().delete(Controller.getSelectedVet().getId());
+        Controller.setTableModel(jTable4, new VeterinarianTableModel(VeterinarianDAO.getInstance().retrieveAll()));
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+        VeterinarianDAO.getInstance().update(Controller.getSelectedVet().getId(), jTextField18.getText(), jTextField24.getText(), jTextField20.getText(), jTextField19.getText());
+        Controller.setTableModel(jTable4, new VeterinarianTableModel(VeterinarianDAO.getInstance().retrieveAll()));
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+        AppointmentDAO.getInstance().create(jDateChooser1.getDate(), jList1.getSelectedValue(), jTextArea4.getText(), Controller.getSelectedAnimal().getId(), Controller.getSelectedVet().getId(), Controller.getSelectedTreatment().getId(), false);
+        Controller.setTableModel(jTable2, new AppointmentTableModel(AppointmentDAO.getInstance().retrieveByGivenInfo(Controller.getSelectedAnimal().getId(), Controller.getSelectedVet().getId(), Controller.getSelectedTreatment().getId())));
+        JOptionPane.showMessageDialog(this, "Consulta marcada.");
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        TreatmentDAO.getInstance().create(Controller.getSelectedAnimal().getId(), jTextField22.getText(), jDateChooser2.getDate(), jDateChooser3.getDate(), false);
+        Controller.setTableModel(jTable1, new TreatmentTableModel(TreatmentDAO.getInstance().retrieveByAnimalId(Controller.getSelectedAnimal().getId())));
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void checkbox3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkbox3MousePressed
+        // TODO add your handling code here:
+        // VERY BUGGY NEEDS TO SOLVE THIS AS SOON AS POSSIBLE
+        if(checkbox3.getState() == true) {
+            AppointmentDAO.getInstance().update(Controller.getSelectedAppointment().getId(), jDateChooser1.getDate(), jList1.getSelectedValue(), jTextArea4.getText(), Controller.getSelectedAnimal().getId(), Controller.getSelectedVet().getId(), Controller.getSelectedTreatment().getId(), false);
+        } else {
+            AppointmentDAO.getInstance().update(Controller.getSelectedAppointment().getId(), jDateChooser1.getDate(), jList1.getSelectedValue(), jTextArea4.getText(), Controller.getSelectedAnimal().getId(), Controller.getSelectedVet().getId(), Controller.getSelectedTreatment().getId(), true);
+        }
+        
+        Controller.setTableModel(jTable2, new AppointmentTableModel(AppointmentDAO.getInstance().retrieveByGivenInfo(Controller.getSelectedAnimal().getId(), Controller.getSelectedVet().getId(), Controller.getSelectedTreatment().getId())));
+//        AppointmentDAO.getInstance().update(Controller.getSelectedAppointment().getId(), jDateChooser1.getDate(), jList1.getSelectedValue(), jTextArea4.getText(), Controller.getSelectedAnimal().getId(), Controller.getSelectedVet().getId(), Controller.getSelectedTreatment().getId(), checkbox3.isEnabled());
+    }//GEN-LAST:event_checkbox3MousePressed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        // TODO add your handling code here:
+        AppointmentDAO.getInstance().delete(Controller.getSelectedAppointment().getId());
+        Controller.setTableModel(jTable2, new AppointmentTableModel(AppointmentDAO.getInstance().retrieveByGivenInfo(Controller.getSelectedAnimal().getId(), Controller.getSelectedVet().getId(), Controller.getSelectedTreatment().getId())));
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        ExamDAO.getInstance().create(jTextField21.getText(), Controller.getSelectedAppointment().getId());
+        Controller.setExamListModel(jList2);
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     
     

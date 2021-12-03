@@ -87,6 +87,22 @@ public class TreatmentDAO extends DAO {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void update(int id, int idAnimal, String name, Date initialDate, Date endDate, boolean done) {
+        try {
+            PreparedStatement statement;
+            statement = DAO.connect().prepareStatement("UPDATE Treatment SET IDAnimal = ?, Name = ?, InitialDate = ?, EndDate = ?, Done = ? WHERE ID = ?");
+            statement.setInt(1, idAnimal);
+            statement.setString(2, name);
+            statement.setDate(3, new java.sql.Date(initialDate.getTime()));
+            statement.setDate(4, new java.sql.Date(endDate.getTime()));
+            statement.setBoolean(5, done);
+            statement.setInt(6, id);
+            statement.executeUpdate();
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public void delete(int ID) {
         try {

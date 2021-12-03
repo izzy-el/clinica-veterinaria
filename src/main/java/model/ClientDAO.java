@@ -71,6 +71,22 @@ public class ClientDAO extends DAO {
     public ArrayList<Client> retrieveByName(String personName) {
         return this.retrieve(String.format("SELECT * FROM Client WHERE Name = '%s'", personName));
     }
+    
+    public void update(int id, String name, String address, String phone, String cep, String email) {
+        try {
+            PreparedStatement statement;
+            statement = DAO.connect().prepareStatement("UPDATE Client SET Name = ?, Address = ?, Phone = ?, CEP = ?, Email = ? WHERE ID = ?");
+            statement.setString(1, name);
+            statement.setString(2, address);
+            statement.setString(3, phone);
+            statement.setString(4, cep);
+            statement.setString(5, email);
+            statement.setInt(6, id);
+            statement.executeUpdate();
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public void update(Client client) {
         try {

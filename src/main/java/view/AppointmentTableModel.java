@@ -89,9 +89,9 @@ public class AppointmentTableModel extends GenericTableModel{
         AppointmentDAO.getInstance().update(appointment);
     }
     
-    @Override
-    public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return true;
-    }
+//    @Override
+//    public boolean isCellEditable(int rowIndex, int columnIndex) {
+//        return true;
+//    }
     
 }

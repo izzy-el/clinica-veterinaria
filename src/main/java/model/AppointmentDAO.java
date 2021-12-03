@@ -91,6 +91,23 @@ public class AppointmentDAO extends DAO {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void update(int id, Date data, String time, String comments, int idAnimal, int idVet, int idTreatment, boolean done) {
+        try {
+            PreparedStatement statement;
+            statement = DAO.connect().prepareStatement("UPDATE Appointment SET Data = ?, Comentario = ?, IDAnimal = ?, IDVet = ?, IDTreatment = ?, Done = ? WHERE ID = ?");
+            statement.setDate(1, new java.sql.Date(data. getTime()));
+            statement.setString(2, comments);
+            statement.setInt(3, idAnimal);
+            statement.setInt(4, idVet);
+            statement.setInt(5, idTreatment);
+            statement.setBoolean(6, done);
+            statement.setInt(7, id);
+            statement.executeUpdate();
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public void delete(int ID) {
         try {

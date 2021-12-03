@@ -21,14 +21,15 @@ public class AnimalDAO extends DAO {
     }
 
     //CRUD starts here
-    public void create(String name, int age, String gender, String specie) {
+    public void create(String name, int age, String gender, String specie, int idClient) {
         try {
             PreparedStatement statement;
-            statement = DAO.connect().prepareStatement("INSERT INTO Animal (Name, Age, Gender, Specie) VALUES (?,?,?,?)");
+            statement = DAO.connect().prepareStatement("INSERT INTO Animal (Name, Age, Gender, Specie, IDClient) VALUES (?,?,?,?,?)");
             statement.setString(1, name);
             statement.setInt(2, age);
             statement.setString(3, gender);
             statement.setString(4, specie);
+            statement.setInt(5, idClient);
             statement.executeUpdate();
         } catch(SQLException e) {
             System.out.println(e.getMessage());
@@ -92,6 +93,22 @@ public class AnimalDAO extends DAO {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void update(int id, String name, int age, String gender, String specie) {
+        try {
+            PreparedStatement statement;
+            //model.Animal (Name, Age, Gender, Specie) VALUES (?,?,?,?)
+            statement = DAO.connect().prepareStatement("UPDATE Animal SET Name = ?, Age = ?, Gender = ?, Specie = ? WHERE ID = ?");
+            statement.setString(1, name);
+            statement.setInt(2, age);
+            statement.setString(3, gender);
+            statement.setString(4, specie);
+            statement.setInt(5, id);
+            statement.executeUpdate();
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public void delete(Animal animal) {
         try {
@@ -108,6 +125,17 @@ public class AnimalDAO extends DAO {
         try {
             PreparedStatement statement;
             statement = DAO.connect().prepareStatement("DELETE FROM Animal WHERE ID = ?");
+            statement.setString(1, String.valueOf(ID));
+            statement.executeUpdate();
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void deleteBasedOwner(int ID) {
+        try {
+            PreparedStatement statement;
+            statement = DAO.connect().prepareStatement("DELETE FROM Animal WHERE IDClient = ?");
             statement.setString(1, String.valueOf(ID));
             statement.executeUpdate();
         } catch(Exception e) {
