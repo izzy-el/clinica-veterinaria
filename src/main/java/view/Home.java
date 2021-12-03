@@ -1038,6 +1038,11 @@ public class Home extends javax.swing.JFrame {
         jLabel14.setText("Exames Solicitados");
 
         checkbox2.setLabel("checkbox2");
+        checkbox2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                checkbox2MousePressed(evt);
+            }
+        });
 
         checkbox3.setLabel("checkbox3");
         checkbox3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1211,6 +1216,8 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         Controller.setSelected(((GenericTableModel) jTable1.getModel()).getItem(jTable1.getSelectedRow()));
         Controller.setTableModel(jTable2, new AppointmentTableModel(AppointmentDAO.getInstance().retrieveByGivenInfo(Controller.getSelectedAnimal().getId(), Controller.getSelectedVet().getId(), Controller.getSelectedTreatment().getId())));
+//        checkbox2.setEnabled(Controller.getSelectedTreatment().isDone());
+        checkbox2.setState(Controller.getSelectedTreatment().isDone());
     }//GEN-LAST:event_jTable1MousePressed
 
     private void jTextField24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField24ActionPerformed
@@ -1256,6 +1263,8 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here
         Controller.setSelected(((GenericTableModel) jTable2.getModel()).getItem(jTable2.getSelectedRow()));
         Controller.setExamListModel(jList2);
+//        checkbox3.setEnabled(Controller.getSelectedAppointment().isDone());
+        checkbox3.setState(Controller.getSelectedAppointment().isDone());
     }//GEN-LAST:event_jTable2MousePressed
 
     private void jList2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList2MousePressed
@@ -1371,7 +1380,6 @@ public class Home extends javax.swing.JFrame {
 
     private void checkbox3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkbox3MousePressed
         // TODO add your handling code here:
-        // VERY BUGGY NEEDS TO SOLVE THIS AS SOON AS POSSIBLE
         if(checkbox3.getState() == true) {
             AppointmentDAO.getInstance().update(Controller.getSelectedAppointment().getId(), jDateChooser1.getDate(), jList1.getSelectedValue(), jTextArea4.getText(), Controller.getSelectedAnimal().getId(), Controller.getSelectedVet().getId(), Controller.getSelectedTreatment().getId(), false);
         } else {
@@ -1393,6 +1401,17 @@ public class Home extends javax.swing.JFrame {
         ExamDAO.getInstance().create(jTextField21.getText(), Controller.getSelectedAppointment().getId());
         Controller.setExamListModel(jList2);
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void checkbox2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkbox2MousePressed
+        // TODO add your handling code here:
+        if(checkbox2.getState() == true) {
+            TreatmentDAO.getInstance().update(Controller.getSelectedTreatment().getId(), Controller.getSelectedAnimal().getId(), Controller.getSelectedTreatment().getName(), Controller.getSelectedTreatment().getInitialDate(), Controller.getSelectedTreatment().getEndDate(), false);
+        } else {
+            TreatmentDAO.getInstance().update(Controller.getSelectedTreatment().getId(), Controller.getSelectedAnimal().getId(), Controller.getSelectedTreatment().getName(), Controller.getSelectedTreatment().getInitialDate(), Controller.getSelectedTreatment().getEndDate(), true);
+        }
+        
+        Controller.setTableModel(jTable1, new TreatmentTableModel(TreatmentDAO.getInstance().retrieveByAnimalId(Controller.getSelectedAnimal().getId())));
+    }//GEN-LAST:event_checkbox2MousePressed
 
     
     

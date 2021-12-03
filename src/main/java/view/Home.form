@@ -1487,6 +1487,9 @@
                   <Properties>
                     <Property name="label" type="java.lang.String" value="checkbox2"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="checkbox2MousePressed"/>
+                  </Events>
                 </Component>
                 <Component class="java.awt.Checkbox" name="checkbox3">
                   <Properties>
