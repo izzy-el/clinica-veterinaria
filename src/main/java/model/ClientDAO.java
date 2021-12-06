@@ -69,7 +69,7 @@ public class ClientDAO extends DAO {
     }
     
     public ArrayList<Client> retrieveByName(String personName) {
-        return this.retrieve(String.format("SELECT * FROM Client WHERE Name = '%s'", personName));
+        return this.retrieve("SELECT * FROM Client WHERE Name LIKE '%" + personName + "%'");
     }
     
     public void update(int id, String name, String address, String phone, String cep, String email) {

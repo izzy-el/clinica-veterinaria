@@ -68,7 +68,7 @@ public class VeterinarianDAO extends DAO {
     }
     
     public ArrayList<Veterinarian> retrieveByName(String name) {
-        return this.retrieve(String.format("SELECT * FROM Veterinarian WHERE Name = '%s'", name));
+        return this.retrieve("SELECT * FROM Veterinarian WHERE Name LIKE '%" + name + "%'");
     }
 
     public void update(Veterinarian veterinarian) {

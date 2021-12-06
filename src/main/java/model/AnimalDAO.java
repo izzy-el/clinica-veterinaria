@@ -70,14 +70,14 @@ public class AnimalDAO extends DAO {
         return (animals.isEmpty() ? null : animals.get(0));
     }
 
-     public ArrayList<Animal> retrieveByClientId(int id) {
-         return this.retrieve("SELECT * FROM Animal WHERE IDClient = " + id);
-     }
-     
-     public ArrayList<Animal> retrieveByNameAndClient(String name, int idClient) {
-         return this.retrieve(String.format("SELECT * FROM Animal WHERE Name = '%s' AND IDCLient = '%d'", name, idClient));
-     }
+    public ArrayList<Animal> retrieveByClientId(int id) {
+        return this.retrieve("SELECT * FROM Animal WHERE IDClient = " + id);
+    }
 
+    public ArrayList<Animal> retrieveByNameAndClient(String name, int idClient) {
+        return this.retrieve("SELECT * FROM Animal WHERE Name LIKE '%" + name + "%' and IDClient = " + idClient);
+    }
+    
     public void update(Animal animal) {
         try {
             PreparedStatement statement;
