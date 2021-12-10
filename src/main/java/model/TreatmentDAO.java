@@ -72,6 +72,10 @@ public class TreatmentDAO extends DAO {
     public ArrayList<Treatment> retrieveByAnimalId(int id) {
         return this.retrieve("SELECT * FROM Treatment WHERE IDAnimal = " + id);
     }
+    
+    public ArrayList<Treatment> retrieveRangeDate(long rangeDate) {
+        return this.retrieve("SELECT * FROM Treatment WHERE " + rangeDate + " BETWEEN InitialDate AND EndDate");
+    }
 
     public void update(Treatment treatment) {
         try {

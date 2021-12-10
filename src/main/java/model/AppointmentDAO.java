@@ -3,6 +3,7 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -73,6 +74,14 @@ public class AppointmentDAO extends DAO {
     
     public ArrayList<Appointment> retrieveByGivenInfo(int idAnimal, int idVet, int idTreatment) {
         return this.retrieve("SELECT * FROM Appointment WHERE IDAnimal = " + idAnimal + " AND IDVet = " + idVet + " AND IDTreatment = " + idTreatment);
+    }
+    
+    public ArrayList<Appointment> retrieveToday(long today) {
+        return this.retrieve("SELECT * FROM Appointment WHERE Data = " + today);
+    }
+    
+    public ArrayList<Appointment> retrieveByVet(int vet) {
+        return this.retrieve("SELECT * FROM Appointment WHERE IDVet = " + vet);
     }
 
     public void update(Appointment appointment) {
