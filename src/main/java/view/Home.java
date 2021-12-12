@@ -1522,9 +1522,15 @@ public class Home extends javax.swing.JFrame {
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
         // TODO add your handling code here:
-        Controller.setTableModel(jTable2, new AppointmentTableModel(AppointmentDAO.getInstance().retrieveByVet(Controller.getSelectedVet().getId())));
-        jToggleButton1.setSelected(false);
-        jToggleButton2.setSelected(false);
+        try {
+            Controller.setTableModel(jTable2, new AppointmentTableModel(AppointmentDAO.getInstance().retrieveByVet(Controller.getSelectedVet().getId())));
+            jToggleButton1.setSelected(false);
+            jToggleButton2.setSelected(false);
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "Selecione um veterinário.");
+            jToggleButton1.setSelected(false);
+            jToggleButton2.setSelected(false);
+        }
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
